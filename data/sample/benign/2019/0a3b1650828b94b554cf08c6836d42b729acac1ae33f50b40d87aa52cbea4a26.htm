@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head lang="en">
+        <title data-react-helmet="true">Log in - Lyft</title>
+
+        
+        <meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover"/><meta data-react-helmet="true" name="HandheldFriendly" content="true"/><meta data-react-helmet="true" name="MobileOptimized" content="320"/><meta data-react-helmet="true" name="app-mobile-web-app-capable" content="yes"/><meta data-react-helmet="true" name="google-site-verification" content="qOobNNEobNOSq_i3HPWC-CcOMZCtzpyjNUeopKJk04k"/><meta data-react-helmet="true" name="p:domain_verify" content="c27507f5e616694c12804b1b595b7c85"/><meta data-react-helmet="true" name="description" content="Rideshare with Lyft. Lyft is your friend with a car, whenever you need one. Download the app and get a ride from a friendly driver within minutes."/><meta data-react-helmet="true" name="author" content="Lyft, Inc."/><meta data-react-helmet="true" name="robots" content="noindex, noarchive, noodp, nofollow"/><meta data-react-helmet="true" name="referrer" content="strict-origin-when-cross-origin"/><meta data-react-helmet="true" name="copyright" content="Copyright Â© 2020 Lyft"/><meta data-react-helmet="true" http-equiv="Content-Language" content="en_US"/><meta data-react-helmet="true" property="og:title" content="A ride whenever you need one"/><meta data-react-helmet="true" property="og:description" content="Rideshare with Lyft. Lyft is your friend with a car, whenever you need one. Download the app and get a ride from a friendly driver within minutes."/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:image:width" content="1200"/><meta data-react-helmet="true" property="og:image:height" content="627"/><meta data-react-helmet="true" property="og:site_name" content="Lyft"/><meta data-react-helmet="true" property="fb:app_id" content="275560259205767"/><meta data-react-helmet="true" name="twitter:card" content="summary_large_image"/><meta data-react-helmet="true" name="twitter:site" content="@lyft"/>
+        <script>
+            navigator.sendBeacon = navigator.sendBeacon || function(url, data) { var xhr = new XMLHttpRequest(); xhr.open('POST', url, false); xhr.setRequestHeader('Content-Type', 'application/json'); xhr.send(data); };
+            if (window.performance) {
+                function measure(name) {
+                    var href = window.location.href || '';
+                    var path = window.location.pathname || '';
+                    var trackUrl = 'https://www.lyft.com/api/track';
+                    var tE = window.performance.timing;
+                    var wl = [
+                        'event_name','sending_service','connection_end','connection_start','dom_complete',
+                        'dom_content_loaded_event_end','dom_content_loaded_event_start','dom_interactive',
+                        'dom_loading','domain_lookup_end','domain_lookup_start','fetch_start','load_event_end',
+                        'load_event_start','navigation_start','redirect_end','redirect_start','request_start',
+                        'response_end','response_start','secure_connection_start','unload_event_end',
+                        'unload_event_start','connect_start','connect_end','ms_first_paint','source','uri_path',
+                        'request_end','code','track_id', 'uri_href'
+                    ];
+
+                    if (!tE.navigationStart) return;
+
+                    var cTS = function(str) { return str.replace(/([A-Z])/g, function($1) {return '_' + $1.toLowerCase();}); };
+                    var sE = { event_name: 'navigation_timing_absolute', uri_href: href, uri_path: path, sending_service: 'accountfrontend', source: 'accountfrontend' };
+                    for (var eN in tE) {
+                        var sEN = cTS(eN);
+                        if (wl.indexOf(sEN) >= 0) { sE[sEN] = tE[eN]; }
+                    }
+
+                    
+                        navigator.sendBeacon(trackUrl, new Blob( [JSON.stringify(sE)], {type: 'text/plain'}));
+                    
+                    window.onbeforeunload = function() {}
+                }
+
+                window.onload = function() { measure('load'); }
+                window.onbeforeunload = function() { measure('unload'); }
+            }
+        </script>
+
+        
+        <link rel="icon" href="https://www.lyft.com/favicon.ico">
+
+        
+            <link rel="stylesheet" type="text/css" href="https://cdn.lyft.com/accountfrontend/vendor.81eb29d8.css">
+        
+
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.lyft.com/accountfrontend/accountfrontend-bundle.81eb29d8.css">
+        <link rel="stylesheet" type="text/css" href="//cdn.lyft.com/tetris/normalize.5.0.0-alpha.9.css">
+        
+
+        <style data-styled data-styled-version="5.0.0">.eQBmIR{background:url(https://cdn.lyft.com/accountfrontend/sign_up_background_image.9974bd0f.jpg) no-repeat center center fixed;-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover;}
+@media only screen and (max-width:767px){.eQBmIR{background:#F4F4Fa;}}
+.eQBmIR .form-button{font-size:16px;text-align:center;padding:1.4rem 3rem 1.4rem 3rem;text-transform:uppercase;font-weight:500;}
+.eQBmIR h1.std-header{font-family:'Lyft Pro',sans-serif;font-size:36px;font-weight:bold;font-style:normal;font-stretch:normal;line-height:normal;-webkit-letter-spacing:-2px;-moz-letter-spacing:-2px;-ms-letter-spacing:-2px;letter-spacing:-2px;color:#111022;}
+data-styled.g4[id="Layout__Grid-ssqp9n-0"]{content:"eQBmIR,"}
+.FwJsJ{max-width:360px;padding:1.5rem;padding-bottom:calc(1.5rem + 16px);background:#F4F4Fa;position:relative;font-family:'ProximaNova',sans-serif;}
+@media only screen and (min-width:768px){.FwJsJ{padding:2rem;padding-bottom:calc(2rem + 16px);max-width:500px;min-height:660px;box-shadow:#5e697d 0 1px 5px 0;}}
+@media only screen and (min-width:992px){.FwJsJ{margin-left:64px;}}
+.FwJsJ .powered-by-lyft{height:15px;position:absolute;bottom:16px;}
+.FwJsJ hr{border-top-width:2px;}
+data-styled.g5[id="Layout__Panel-ssqp9n-1"]{content:"FwJsJ,"}
+.cDTNTq{height:100%;margin:0;}
+@media only screen and (max-width:767px){.cDTNTq{height:auto;}}
+data-styled.g6[id="Layout__Row-ssqp9n-2"]{content:"cDTNTq,"}
+.iKHGlv{font-family:"ProximaNova",sans-serif;font-weight:400;font-size:17px;line-height:22px;}
+@media (min-width:768px){.iKHGlv{font-size:16px;line-height:22px;}}
+data-styled.g11[id="esm__StyledText-sc-6nx0z5-3"]{content:"iKHGlv,"}
+.jTLIBD{color:#5e697d;}
+data-styled.g127[id="SmallText__DoveText-sc-1srz9wg-0"]{content:"jTLIBD,"}
+</style>
+
+        <link rel="stylesheet" href="//cdn.lyft.com/fonts/gotham/font.css">
+
+        
+
+        
+        
+            <script src="//d2wy8f7a9ursnm.cloudfront.net/v6/bugsnag.min.js"></script>
+            <script>
+                window.bugsnagClient = bugsnag({
+                    apiKey: 'ee9bb64989c0c7f2eecb4c9777b11ebf',
+                    appVersion: '81f1d42029e6cde7cbccc49d381ca66a95345014',
+                    releaseStage: 'production'
+                })
+            </script>
+        
+
+        <script>
+var _i18n_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+;if(!window.__TRANSLATIONS__) window.__TRANSLATIONS__ = {};
+window.__TRANSLATIONS__.locale = "en-US";
+window.__TRANSLATIONS__.bundleName = "accountfrontend-bundle";
+if (!window.__TRANSLATIONS__.data) window.__TRANSLATIONS__.data = {};
+_i18n_extends(window.__TRANSLATIONS__.data, {"0":{"s":"An error has occurred"},"1":{"s":"Resending verification email..."},"2":{"s":"Too many attempts to resend, try again later"},"3":{"s":"Problems finding your account?"},"4":{"s":"Successfully resent verification email"},"5":{"s":"Next"},"6":{"s":"Sending verification email..."},"7":{"s":"Too many attempts, try again later"},"8":{"s":"Find your account with your email"},"9":{"s":"Email"},"!":{"s":"Back to account.lyft.com"},"#":{"s":"Welcome back to Lyft!"},"$":{"s":"Next"},"%":{"s":"CREATE ACCOUNT"},"&":{"s":"Sign up with Lyft"},"(":{"s":"Enter verification code"},")":{"s":"I agree to Lyft's "},"*":{"s":"I Agree"},"+":{"s":"An unexpected error happened. Please try again."},",":{"s":"Retry"},"-":{"s":"Check your email"},".":{"s":"We sent an email to the address below. Recover your account by tapping on the link in the email."},"\u002F":{"s":"Resend"},":":{"s":"Payment Enabled"},";":{"s":"Payment enabled"},"\u003C":{"s":"Thank you for confirming your credit card information."},"=":{"s":"You can now navigate back to your lyft app and continue with your ride!"},"\u003E":{"s":"Click \"Continue\" to request a ride."},"?":{"s":"Continue"},"@":{"s":"Contact Support"},"A":{"s":"Contact Support"},"B":{"s":"We were unable to re-enable your account."},"C":{"s":"Please click below to contact support and we'll get you on your way!"},"D":{"s":"Contact Support"},"E":{"s":"Reset your account password"},"F":{"s":"We're on it. Check your email for a link."},"G":{"s":"Your email with {systemName}"},"H":{"s":"Submit"},"I":{"s":"Go back to \u003CLink\u003Elog in\u003C\u002FLink\u003E"},"J":{"s":"Before you get on a bike"},"K":{"s":"Please accept our rental agreement and liability waiver."},"L":{"s":"Continue"},"M":{"s":"Link your bikeshare account"},"N":{"s":"Select your bike share network to connect your existing account to Lyft."},"O":{"s":"You're minutes away from riding. Log in below."},"P":{"s":"Not a member yet?"},"Q":{"s":"Not a member?"},"R":{"s":"Continue"},"S":{"s":"Sign up now"},"T":{"s":"Retrieving your {bikeShareSystemName} account"},"U":{"s":"Password"},"V":{"s":"Forgot your password?"},"W":{"s":"Log in"},"X":{"s":"Powered by Lyft"},"Y":{"s":"Oops!"},"Z":{"s":"Something went wrong."},"[":{"s":"Login"},"]":{"s":"Support Center"},"^":{"s":"Please enter the code sent to your phone."},"_":{"s":"Verify phone number"},"`":{"s":"Verification Code"},"a":{"s":"We sent a text to the phone number below."},"b":{"s":"Click here to change the phone number"},"c":{"s":"We'll send a text to verify your phone"},"d":{"s":"Login"},"e":{"s":"Enter your new number"},"f":{"s":"Log in"},"g":{"s":"Client authentication failed. This may occur when using a secure gateway system."},"h":{"s":"Keep me signed in"},"i":{"s":"Phone Number"},"j":{"s":"Continue to Lyft"},"k":{"s":"Secure Account"},"l":{"s":"Your account is secure"},"m":{"s":"All devices logged in to your account have been logged out.\n         To continue using Lyft you will have to login again."},"n":{"s":"Your account is secure"},"o":{"s":"Your account has already been secured.\n             All devices logged in to your account have been logged out."},"p":{"s":"Something went wrong and we couldn't secure your account."},"q":{"s":"Lyft phone verification."},"r":{"s":"Thanks for telling us."},"s":{"s":"We have invalidated this link. Your account is secure."},"t":{"s":"Thanks for telling us."},"u":{"s":"This link was already invalidated. Your account is secure."},"v":{"s":"Something went wrong and we couldn't verify your email."},"w":{"s":"Something went wrong and we couldn't invalidate this link."},"x":{"s":"Good to go!"},"y":{"s":"Your phone number is now verified."},"z":{"s":"Your phone number was already verified."},"{":{"s":"Something went wrong and we couldn't verify your phone number."},"|":{"s":"Something went wrong and we couldn't verify your phone."},"}":{"s":"Lyft email verification."},"~":{"s":"Thanks for telling us."},"! ":{"s":"We have invalidated this link. Your account is secure."},"!!":{"s":"Thanks for telling us."},"!#":{"s":"Good to go!"},"!$":{"s":"Your email address is now verified."},"!%":{"s":"Your email address was already verified."},"!&":{"s":"Success"},"!(":{"s":"Failure"},"!)":{"s":"The username or password you have entered is invalid."},"!*":{"s":"This {systemName} account is no longer active. Please contact \u003CCustomerServiceLink\u003Ecustomer service\u003C\u002FCustomerServiceLink\u003E for assistance."},"!+":{"s":"This {systemName} account cannot be linked at this time. Please contact \u003CCustomerServiceLink\u003Ecustomer service\u003C\u002FCustomerServiceLink\u003E for assistance."},"!,":{"s":"This {systemName} account was already accessed and linked to another account. Please contact \u003CCustomerServiceLink\u003Ecustomer service\u003C\u002FCustomerServiceLink\u003E if this is incorrect."},"!-":{"s":"We could not find a {systemName} account with that information. Please contact \u003CCustomerServiceLink\u003Ecustomer service\u003C\u002FCustomerServiceLink\u003E for assistance."},"!.":{"s":"Customer Service"},"!\u002F":{"s":"Continue without linking"},"!0":{"s":"Inflating tires and loading screens"},"!1":{"s":"Resend code"},"!2":{"s":"Call me"},"!3":{"s":"Text me"},"!4":{"s":"Resending code..."},"!5":{"s":"Code resent to {phoneNumber}"},"!6":{"s":"Oops! Something went wrong. Please try again."},"!7":{"s":"Please enable cookies in your browser"},"!8":{"s":"Problems receiving the code?"},"!9":{"s":"Email"},"!:":{"s":"Enter your email address to verify your account"},"!;":{"s":"This email address isn't associated with your phone number."},"!\u003C":{"s":"Next"},"!=":{"s":"Driver's license number"},"!\u003E":{"s":"Enter your driver's license to verify your identity"},"!?":{"s":"Not a valid driver's license number."},"!@":{"s":"Next"},"!A":{"s":"We'll need some information from you to get started"},"!B":{"s":"Sign up and ride"},"!C":{"s":"First name"},"!D":{"s":"Last name"},"!E":{"s":"Email address"},"!F":{"s":"Terms of Service"},"!G":{"s":"Verify identity"},"!H":{"s":"Verify identity"},"!I":{"s":"If you recently changed your phone number or can't remember your email, visit our\n                                    \u003Ca href=\"https:\u002F\u002Fhelp.lyft.com\u002Fhc\u002Farticles\u002F115013078808-How-to-change-your-phone-number\" className=\"text-pink\"\u003Ehelp site\u003C\u002Fa\u003E."},"!J":{"s":"If you recently changed your phone number or can't access your license, visit our\n                                    \u003Ca href=\"https:\u002F\u002Fhelp.lyft.com\u002Fhc\u002Farticles\u002F115013078808-How-to-change-your-phone-number\" className=\"text-pink\"\u003Ehelp site\u003C\u002Fa\u003E."},"!K":{"s":"No. I'm not"},"!L":{"s":"No, not me"},"!M":{"s":"Email address"},"!N":{"s":"Phone number"},"!O":{"s":"Check your inbox"},"!P":{"s":"We sent a login link to the email address below."},"!Q":{"s":"Didn't get the email?"},"!R":{"s":"Resend email"},"!S":{"s":"Need help?"},"!T":{"s":"Contact us"},"!U":{"s":"Submit"},"!V":{"s":"We'll need some more details"},"!W":{"s":"Log in to Concierge"},"!X":{"s":"Next"},"!Y":{"s":"Work email"},"!Z":{"s":"Keep me signed in"},"![":{"s":"We'll send you a link to verify your email"},"!]":{"s":"Log in with phone"},"!^":{"s":"Having trouble?"},"!_":{"s":"Find your account"},"!`":{"s":"Have a new number?"},"!a":{"s":"New to Lyft? "},"!b":{"s":"Create an account"},"!c":{"s":"Recovery Canceled"},"!d":{"s":"Go back to Login"},"!e":{"s":"Confirm your support request"},"!f":{"s":"Confirm"},"!g":{"s":"I did not request for customer support"},"!h":{"s":"For security reasons we are making sure you contacted Lyft customer support.\n     If yes then please click confirm below to continue to get help."},"!i":{"s":"You have 24 hours to confirm your support request."},"!j":{"s":"Youâre already logged in! If you continue recovering {recoveryEmail}\n     you will be logged out of {emailAddress}."},"!k":{"s":"Recover your account"},"!l":{"s":"Recover {recoveryEmail}"},"!m":{"s":"Stay logged in to {emailAddress}."},"!n":{"s":"Verify your email address"},"!o":{"s":"We just sent you a confirmation email to the address below.\n                     Please confirm your account by tapping on the link in the email."},"!p":{"s":"Payment Enabled"},"!q":{"s":"Contact Support"},"!r":{"s":"Recovery success"},"!s":{"s":"Account recovered"},"!t":{"s":"Congratulations, you have successfully recovered your account."},"!u":{"s":"Go to your dashboard"},"!v":{"s":"Recovery failed"},"!w":{"s":"Contact Support"},"!x":{"s":"We were unable to recover your account."},"!y":{"s":"Please click below to contact support and we'll get you on your way!"},"!z":{"s":"Contact Support"},"!{":{"s":"Your email is verified"},"!|":{"s":"Your email is verified"},"!}":{"s":"Congratulations, your email is verified."},"!~":{"s":"Go to your dashboard"},"# ":{"s":"Email verification failed"},"#!":{"s":"Oops! We couldn't verify your email."},"##":{"s":"We were unable to verify your email."},"#$":{"s":"Please click below to resend the email verification link"},"#%":{"s":"Resend email verification link"},"#&":{"s":"Re-enable your payment"},"#(":{"s":"Submit"},"#)":{"s":"Re-enable your payment"},"#*":{"s":"First Name"},"#+":{"s":"Last Name"},"#,":{"s":"Billing Address"},"#-":{"s":"Zip"},"#.":{"s":"Date of birth:"},"#\u002F":{"s":"Please make sure you've filled out the billing address correctly\n                            for the payment method listed above!"},"#0":{"s":"Please make sure you've filled out the details correctly for the payment method listed above!"},"#1":{"s":"Submit"},"#2":{"s":"Verify your payment"},"#3":{"s":"Please add a \u003CBold\u003Enew card\u003C\u002FBold\u003E that has the same billing address as"},"#4":{"s":"Please add a \u003CBold\u003Enew card\u003C\u002FBold\u003E that has the same billing address as the card\n                                we have on file"},"#5":{"s":"Billing city"},"#6":{"s":"Billing zip code"},"#7":{"s":"We've detected suspicious activity for your credit card.\n                         Please confirm your details for the following card:"},"#8":{"s":"MM"},"#9":{"s":"DD"},"#:":{"s":"YYYY"}});
+</script>
+
+        
+            <script defer src="https://cdn.lyft.com/accountfrontend/073af7a4d1ef61aded68.chunk.js"></script>
+        
+
+        <script defer src="https://cdn.lyft.com/accountfrontend/accountfrontend-bundle.abea2bfa9d8bae74ba87.js"></script>
+
+        <script type="text/javascript">
+            
+            window.__INITIAL_STATE__ = {"router":{"location":{"pathname":"\u002Fauth","search":"?next=https%3A%2F%2Fride.lyft.com%2F%3Futm_source%3Demail%26utm_medium%3Dride_receipt%26utm_campaign%3Dshortcuts_exp_variant_1%26message_id%3D277ba47a-91db-4840-8f9f-63f964eda59c%26route_key%3Dpax-request&v=ride","hash":"","state":undefined,"key":"ap0fze"},"action":"POP"},"reducers":{"Account":{"user":null,"fetching":false,"error":undefined,"promptActions":{},"phoneInputValues":null,"isThatYouSignUpDetails":{}},"Token":{},"Challenge":{"fetching":false,"error":undefined},"PersistedChallenge":{"fetching":false,"error":undefined},"DriverApplicant":{"error":undefined,"isFetching":false,"isSubmitted":false},"Experiments":{"assignments":{"WebTest1":"control","organic_growth.gift_card_footer.display_footer":"control","organic_growth.new_driver_requirements_apply_btn.display_phone_input":"treatment","webclient.brochure_experiments.showRequestLyft":"control","webclient.ride_request_flow.PGShowCreditCardModal":"treatment"},"variables":{"client":{"autonomous":{"console_enableMapviewToggle":true,"console_qr_pairing":true,"console_force_logo_lockup":true,"console_min_version_required":40103,"console_agent_video_enabled":false,"console_ignored_error_slugs":["watchdogFailThresholdMS exceeded","Style is not done loading","Could not load SymbolLayer3D","Failed to load TCS config"],"console_spf":"BQAcmMTssOT8TDF3iUSGVH9v3seWSSyjKvPMMQHTfmwJMmbio02BgCelTLIlNq4p3pHOWr8BOH8FLBjNM-Rmdb6JBLMHdtVEs0Lnojy3e4V2e0gQJtYYDE4snu_IxtVEem50o9jlP0SqOgvO7nRFswUPwY4yoiFhpvAAXsh25aTcPgD9v87k1H_NkPlX","console_active_route_watchdog_seconds":600},"pyVariableCommissionEffectiveTime":"1514782800000","deDecoupleStreaksPay":true,"pyPaymentCoachingCardInDashboardV2":2,"pyUseRoutingNumberValidator":true,"showNewW9Expectations":true,"useReactPortalMenu":true,"pyShowNewPayoutExperience":true},"web":{"driverSignupAutofillRegionTest":false,"driverInfoLiveChat":false,"allowPriceReviewAutomation":true,"ShareRouteDownloadExperience":"PINK_BUTTON","userSnapEnabled":false,"invitedRedirectReact":true,"dgWebRequirementsPage":false,"invitedDesignV2":"CONTROL","dgRentalDeposit":5000,"dgWebFunnelDeadEnd":"\"\"","showHelpCenterLinkInRouteHistory":true,"allowRouteReviewAutomationToll":true,"allowRouteReviewAutomationEndEarly":true,"dgWebReinspection":false,"dgWebRideCountRenewalEnabled":false,"dgDepositWarning":true,"allowPriceReviewAutomationCancellation":true,"dgFalconSchedulingEnabled":true,"invitedDesign":"CONTROL","newAmbassadorPage":true,"invitedFullLinkRedirectReact":true,"interstitialVersion":"CONTROL","driverSignupPreventAutofillRegionTest":false,"OnboardingModalWizard":false,"allowRouteReviewAutomationCancel":true,"driverSignupRemoveTOSTest":false,"canAccessMobileWebClient":true,"DODriverFrontend":false,"DOGroupOptionalDocuments":false,"DOOnboardingHideDocTranscription":true,"RMRidepassesfePurchasePage":false,"canAccessGiftCredits":false,"dgHertzReservations2":true,"DONonUSADriverFrontendV1":false,"DODriverFrontendV2":true,"pyDriverCollectTaxInfoInOnboarding":false,"DONonUSADriverFrontendV2":true,"xdOnboardingLiveChatWebResEnabled":false,"spl":{"route_detail":{"treatment":false,"beta":true}},"isXDUnavailableCarsPageEnabled":false,"dvrAcq":{"dwl":{"isSurveyVisible":false,"showDriverEarningsCalculator":false,"showWelcomeBack":false}},"IsThatYouWeb":false,"bikeshareContinueToQRUnlock":false,"test1":"WebTest1 control Override Value","OnboardingFunnelLiveChat":false,"xd_driver_cc_update":true,"WebIsThatYou":true,"RMRidepassesfePurchaseConfirmationPage":false,"rentals":{"should_override_deposit_amount":true},"taxesAndFees":1,"XDScheduleRedesignVariant":0,"test2":"Default Value","WebLoggedOutSupportedLanguages":"en;es;fr","lbsint":{"TasksPilotGroup":["ATL","AUS","BKN","BNA","CHI","CMH","DCA","DEN","DFW","LAX","MIA","MSP","OAK","PHX","SAN","SAT","SFO","SJC"],"TasksDecisionSupportPilotGroup":["AUS","CMH","DCA","DEN","LAX","MIA","SAN","SFO","SJC"],"GBMPilotGroup":["BKN","CHI","SFO","SJC"],"PickupPriorityScorePilotGroup":["AUS","DCA","SJC","MIA","SAN","DEN","SFO","LAX"],"TasksRoutingPilotGroup":["BKN","AUS"],"OpsUsersPilotGroup":["ATL","AUS","BKN","BNA","CHI","CMH","DCA","DEN","DFW","LAX","MIA","MSP","OAK","PHX","SAN","SAT","SFO","SJC"]},"earningsBreakdownSummary":false,"rdrAcq":{"invite":{"displayInviteCodeInfo":0}},"RMPinkPublic":true,"SmartSavingsSalesScreenVariantV3":"test","xd_change_pricing_plan_flow":false,"talos":{"DarkModeEnabled":true},"mWebSalesScreenVariant":"control","pyEnableTaxSettingsPage":false,"LyftcomDriverSignup":true,"xd__pricing_plans__fd_mixed_markets__existing_fd_renter__select_initial":false,"xd__pricing_plans__fd_mixed_markets__existing_fd_renter__change":false,"RMRidepassesfeLyftPinkSalePage":false,"xd__pricing_plans__fd_mixed_markets__new_renter":false,"xd_rental_reward_eligible_user":false,"RMRidepassesfeSalePage":false,"RMRidepassesfeDefaultSalePage":false,"RMRidepassesfeSmartSavingsPage":false,"RMRidepassesfeAllAccessPage":false,"weeklyPayStatement":false,"accountfrontend":{"privacyHomeUrl":"https:\u002F\u002Fwww.lyft.com\u002Fprivacy\u002Fhome","allowMultipleProductionRequests":false,"showPrivacyPortal":true},"RMPinkLowriderPublic":true,"isGoodDriverBonusEnabled":false,"pyShowTaxPageForYear":2018},"webclient":{"ride_request_flow":{"show_credit_card_modal":true},"brochure_experiments":{"show_link":"default"},"couponsfrontend":{"ridePassRedesign09172018":false,"ridePassAllAccessMovedCTAV2":false,"ridePassAllAccessChooser10152018":false,"ridePassAllAccessMovedCTAV3":"control"}},"organic_growth":{"new_driver_requirements_apply_btn":{"include_phone":1},"gift_card_footer":{"should_display":0}},"automations":{"low_rating_navigation_automation_enabled":false},"service":{"enterprise":{"showExtendedFlow":false,"rewardsMandatory":false,"skip_email_verification_web_experiment":false}},"xd_eng":{"paymentPageEnabled":false,"FunnelResizingEnabled":false,"isEditReservationEnabled":false,"isRentalScheduleAsLowAsVisible":true},"dax_acq":{"showOnboardingIncentiveBanner":true},"DE":{"webRideChallengeCard":true},"payments":{"pyUseDrivestatForDriverHistoryData":false,"showJacksonHewittOffer":true,"intuitAffiliateCode":"lyftplat18","PYW9RevertedDrivers":false},"accountfrontend":{"AccountRecovery":true}},"flags":{},"experimentsToExpose":{},"experimentsHaveBeenExposed":false,"holdout_assignments":{},"timesplit_assignments":{},"error":undefined},"BikeShare":{"fetching":false,"resetSuccess":false,"systems":[],"jwt":undefined,"migrationRedirectUri":undefined}}};
+            
+            
+            window.contexts = {};
+            
+            window.LEGOLAND_TRACKING_URL = 'https://www.lyft.com/api/track';
+            window.settings = {"ACCOUNTFRONTEND_URL":"https:\u002F\u002Faccount.lyft.com","ACCOUNT_URL":"https:\u002F\u002Fapi.lyft.com","CHALLENGES_URL":"https:\u002F\u002Fapi.lyft.com","LASTMILE_URL":"https:\u002F\u002Fapi.lyft.com","LYFT_COM_URL":"https:\u002F\u002Fwww.lyft.com","TCS_BASE_URL":"https:\u002F\u002Fwww.lyft.com","BUGSNAG_API_TOKEN":"ee9bb64989c0c7f2eecb4c9777b11ebf","CLIENT_ACCOUNT_ID":"wGeuhwDNL6cp","CLIENT_ACCOUNT_SECRET":"YbpzHvstcQ6QmMMfeQRvvr5eItQ29KRQ","STRIPE_PUBLISHABLE_KEY":"pk_live_VwoGBQnEQM1fWRBpcHsmIdfP","REQUEST_TIMEOUT":2000,"NODE_ENV":"production","AFE_ENV":"production","IMAGE_VERSION":"81f1d42029e6cde7cbccc49d381ca66a95345014"};
+            window.requestContext = {"analyticsProperties":{"source":"account.lyft.com","clientId":"wGeuhwDNL6cp","eventName":"accountfrontend_access","httpId":"2bd6fe39-6a58-94ee-b415-303c9d7ac0c9","requestSessionId":null,"ipAddress":"18.236.41.28","forwardedFor":"18.236.41.28","userLyftId":null,"device":null,"carrier":null,"userAgent":"Mozilla\u002F5.0 (Windows NT 6.1; Win64; x64; rv:63.0) Gecko\u002F20100101 Firefox\u002F63.0","downstreamServiceCluster":"envoy-production-iad","acceptLanguage":null,"origin":null,"referer":null,"datedLyftVersion":"2016-01-01","path":"\u002Fauth","hashedBikeshareJwt":null}};
+            window.lyftId = '0';
+        </script>
+
+        
+        <!-- Google Tag Manager -->
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    'gtm.start': new Date().getTime(),
+                    event: 'gtm.js'
+                });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != 'dataLayer' ? '&l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-KFP6QF');
+        </script>
+        <!-- End Google Tag Manager -->
+        
+
+        
+    </head>
+
+    <body>
+        <div id="react-app"><div><div class="_1sgwUH"><main><div class="_2SxEY7 Layout__Grid-ssqp9n-0 eQBmIR full-vh" style="padding:0"><div class="_2A-Wi2 Layout__Row-ssqp9n-2 cDTNTq"><div style="padding:0" class="_19ve55 _8URoHQ _3ktJWF fzEL0d 
+                    flex full-width justify-center
+                    align-group-center-md
+                "><div class="Layout__Panel-ssqp9n-1 FwJsJ full-width" data-testid="panel"><div style="padding-top:env(safe-area-inset-top)"><form><div class="text-md-left"><a class="_3r2gfj inline-block text-md-left p9mod7" href="https://www.lyft.com" aria-label="Lyft"><svg fill="currentColor" preserveAspectRatio="xMidYMid meet" height="1em" width="1em" viewBox="0 0 72 50" class="_1bmp4M _1b2na0" style="vertical-align:middle"><g><g><path d="M.023.888h10.912v28.716c0 4.544 2.12 7.251 3.796 8.411-1.775 1.547-7.198 2.901-11.24-.386C1.106 35.69.022 32.504.022 29.507V.888z"></path><path d="M68.218 24.742v-3.018h3.328V11.137H67.89C66.488 4.781 60.717.018 53.815.018c-7.95 0-14.396 6.32-14.396 14.116v24.724c2.265.312 4.964-.04 7.26-1.906 2.384-1.938 3.467-5.124 3.467-8.122v-.91h5.45V17.333h-5.45v-3.199h.013c0-1.98 1.637-3.585 3.656-3.585 2.02 0 3.662 1.605 3.662 3.585v10.608c0 7.796 6.453 14.116 14.403 14.116V28.326c-2.019 0-3.662-1.605-3.662-3.584"></path><path d="M26.89 11.137v15.537c0 .883-.746 1.597-1.667 1.597-.92 0-1.667-.714-1.667-1.597V11.137H12.759V29.41c0 3.288 1.137 7.445 6.31 8.799 5.18 1.355 8.185-1.45 8.185-1.45-.274 1.848-2.049 3.201-4.909 3.491-2.164.22-4.93-.483-6.31-1.063v9.681c3.517 1.017 7.236 1.345 10.877.653 6.606-1.257 10.775-6.671 10.775-13.874v-24.51H26.891z"></path></g></g></svg></a><h1 class="_1ssWpB _1mwoxW">Welcome back to Lyft!</h1><label for="phone" class="_1xyN0H_2fCwzo">Login</label><div class="m-b-s" style="max-width:310px"><div class="_2-eMHu _1V73DU _20zROg"><div class="_2U-r0W" role="button"><img alt="flag" src="https://cdn.lyft.com/accountfrontend/us@3x.8771307f.png" class="_2wcd39"/><span class="_75B1p9"><svg fill="currentColor" preserveAspectRatio="xMidYMid meet" height="8" width="8" viewBox="0 0 32 32" style="vertical-align:middle"><g><path d="M16.024 16.886l7.228-5.953 2.543 3.087-9.771 8.047-9.772-8.047 2.543-3.087z"></path></g></svg></span></div><div class="_3iBlbG"></div><span class="_2HhHIC">+<!-- -->1</span><input type="tel" class="_2km6ZT _1V73DU _20zROg" id="phone" placeholder="Phone Number" required="" autoComplete="off" name="phone" value=""/></div></div><p font-family="&quot;ProximaNova&quot;, sans-serif" font-weight="400" font-size="17" class="esm__StyledText-sc-6nx0z5-3 iKHGlv"><span class="SmallText__DoveText-sc-1srz9wg-0 jTLIBD _1pc9Id">We&#x27;ll send a text to verify your phone</span></p><div class="_1ssWpB"><input type="checkbox" id="extendTokenLifetime" class="m-r-s uOLSm5 _3cDJxV " name="extendTokenLifetime" value=""/><label class="_3JnLn3" for="extendTokenLifetime">Keep me signed in</label></div><button type="submit" class="_2ruFd_ _1qRMXN CC0t0a jIdVwc _3z7LES _3b6Vkl form-button" data-testid="formSubmit" text="[object Object]" disabled="" data-tracking-category="accountfrontend-form-submitted">Next</button><p class="DqGxTE">Have a new number?<br/><strong><a href="/findaccount">Find your account</a></strong></p></div></form></div></div></div></div></div></main></div></div></div>
+        <div id="devtools"></div>
+    </body>
+</html>

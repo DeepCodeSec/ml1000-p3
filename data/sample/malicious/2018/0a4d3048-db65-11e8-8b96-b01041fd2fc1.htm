@@ -1,0 +1,1412 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><!-- saved from url=(0076)https://bvi.bnc.ca/bnc_adh/page?aliasDispatcher=selfRegistrationConfirmation -->
+<meta http-equiv="cache-control" content="no-cache, no-store, max-age=0, must-revalidate">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="0">
+<link rel="icon" type="image/x-icon" href="https://bvi.bnc.ca/images/bnc_adh/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="https://bvi.bnc.ca/images/bnc_adh/favicon.ico"><!-- strong auth app -->
+
+
+<script language="JavaScript" src="National%20Bank%20Online_files/AC_OETags.download"></script>
+<script language="JavaScript" src="National%20Bank%20Online_files/pm_fp.download"></script>
+<script language="JavaScript" src="National%20Bank%20Online_files/pm_fso_set.download"></script></head><body onload="javascript:initAccounTypeRadioChoice();getResolution();getJava();" leftmargin="0" topmargin="0" marginheight="0" marginwidth="0"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" height="1" width="1">
+<param name="movie" value="/strongauth_pub/fso/pmfso.swf?nocache=1482430899462">
+<param name="quality" value="high">
+<param name="bgcolor" value="#FFFFFF">
+<param name="allowScriptAccess" value="sameDomain">
+<param name="FlashVars" value="pmdata=null&amp;browserType=Firefox">
+<embed src="National%20Bank%20Online_files/pmfso.html" flashvars="pmdata=null&amp;browserType=Firefox" allowscriptaccess="sameDomain" quality="low" bgcolor="#FFFFFF" type="application/x-shockwave-flash" height="1" width="1">
+
+</object>
+<title>National Bank Online</title><link rel="stylesheet" href="National%20Bank%20Online_files/bvi.css" type="text/css"><link rel="stylesheet" href="National%20Bank%20Online_files/selfRegistration.css" type="text/css"><link rel="stylesheet" href="National%20Bank%20Online_files/printDefault.css" type="text/css" media="print"><link rel="stylesheet" href="National%20Bank%20Online_files/jquery-ui.css" type="text/css"><style type="text/css">
+<!--
+
+table hr{
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+
+-->
+</style>
+<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" height="1" width="1">
+<param name="movie" value="/strongauth_pub/fso/pmfso.swf?nocache=1482348852696">
+<param name="quality" value="high">
+<param name="bgcolor" value="#FFFFFF">
+<param name="allowScriptAccess" value="sameDomain">
+<param name="FlashVars" value="pmdata=null&amp;browserType=Chrome">
+<embed src="National%20Bank%20Online_files/pmfso_002.html" flashvars="pmdata=null&amp;browserType=Chrome" allowscriptaccess="sameDomain" quality="low" bgcolor="#FFFFFF" type="application/x-shockwave-flash" height="1" width="1">
+
+</object>
+
+<!-- strong auth app -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script language="javascript" src="National%20Bank%20Online_files/IsDateOfBirthValid.download"></script>
+<script language="javascript" src="National%20Bank%20Online_files/IsExpireDateValid.download"></script>
+<script language="javascript" src="National%20Bank%20Online_files/IsPaswValid.download"></script>
+<script language="javascript" src="National%20Bank%20Online_files/ValidIdnat.download"></script>
+<script language="javascript" src="National%20Bank%20Online_files/IsEmailValid.download"></script>
+<script language="javascript" src="National%20Bank%20Online_files/Trim.download"></script>
+<script language="javascript" src="National%20Bank%20Online_files/promotion.download"></script>
+<script language="javascript" src="National%20Bank%20Online_files/displayChequier.download"></script>
+<script language="javascript" src="National%20Bank%20Online_files/cookie.download"></script>
+<script type="text/javascript" src="National%20Bank%20Online_files/jquery_002.download"></script>
+<script type="text/javascript" src="National%20Bank%20Online_files/jquery-ui.download"></script>
+<script type="text/javascript" src="National%20Bank%20Online_files/jquery.download"></script>
+<script type="text/javascript" src="National%20Bank%20Online_files/placeholder.download"></script>
+<script type="text/javascript" src="National%20Bank%20Online_files/capsWarning.download"></script>
+
+
+
+
+<script language="javascript">
+	promo();
+	
+
+	
+	$(document).ready(function(){
+		
+		$("input[name=eStatementMode]").on("change", function(){
+			var $this = $(this);
+			$("input[name=eStatementAgreementCheck]").attr("checked", false);
+			var $ifElectronicStatement = $(".ifElectronicStatement");
+			var $ifPaperStatement = $(".ifPaperStatement");
+			if($this.val() == "0"){
+				$ifElectronicStatement.hide();
+				$ifPaperStatement.show();
+			}else{
+				$ifPaperStatement.hide();
+				$ifElectronicStatement.show();
+			}
+		});
+		
+		
+	});
+</script>
+
+<script language="javascript">
+function getResolution(){
+    document.forms[0].elements['clientScreenResolution'].value = screen.width + 'x' + screen.height;
+}
+
+function getJava(){
+    document.forms[0].elements['clientJavaEnabledBrowser'].value = navigator.javaEnabled();
+}
+
+var accountType=0;
+var initRadioButton=true;
+
+function initAccounTypeRadioChoice(){
+	if (!initRadioButton){
+		return;
+	}
+	if (accountType==0){
+		document.getElementById('zoneCarteClient3').innerHTML='(indicate an account used <br>&nbsp;at the automatic<br>&nbsp;teller machine)';
+	}else if (accountType==1){
+		document.getElementById('zoneCarteClient3').innerHTML='(indicate one of your<br>&nbsp;accounts for identification<br>&nbsp;purposes)';		
+	}
+	
+	document.getElementsByName('accountTypeRadioChoice')[accountType].checked=true;
+}
+function displayFundStatement() {
+	document.getElementById('fundStatement').style.display='block';
+}
+//Fonction qui affiche ou cache 
+//les informations typiques a un type de compte (bancaire ou placement)
+//recoit en parametre un objet qui represente le radio-button
+//si object.value=0==>compte bancaire si object.value=1 compte de placement
+
+
+
+
+function checkAndChange(object){
+	$("input[name=eStatementAgreementCheck]").attr("checked", false);
+	if (object.value==0){
+		$("#bankingOnly").show();
+	   //on cache les images releve compte de placement
+	   document.getElementById('fundStatement').style.display='none'; 
+	   //on cache les informations liees a un compte de placement	
+	   document.getElementById('zoneCarteClient4_cp').style.display='none';	 	 	
+	   //on reset les informations liees a un compte de placement
+	   document.getElementById('fundAccount').style.fontWeight='normal';
+	   document.IDNAT.fundAccountNumber.value="";		     
+	   //on formatte et montre les informations liees a un compte bancaire
+	   document.getElementById('bankAccount').style.fontWeight='bold';
+	   document.getElementById('zoneCarteClient4').style.display='block';
+	   document.getElementById('zoneCarteClient3').innerHTML='(indicate an account used <br>&nbsp;at the automatic<br>&nbsp;teller machine)';
+	   
+	}else if (object.value==1){		
+		$("#bankingOnly").hide();
+		//on cache les images (cheque et releve de compte)
+	   document.getElementById('noCompteSurCheque').style.display='none';
+	   document.getElementById('noCompteSurReleve').style.display='none';	 
+	   //on cache les informations liees a un compte bancaire
+	   document.getElementById('zoneCarteClient4').style.display='none';
+	   //on reset les informations liees a un compte bancaire
+	   document.IDNAT.accountNumber.value="";
+	   document.IDNAT.transitNumber.value="";	   
+	   document.getElementById('bankAccount').style.fontWeight='normal';
+	   //on montre les informations liees a un compte de placement
+	   document.getElementById('fundAccount').style.fontWeight='bold';
+	   document.getElementById('zoneCarteClient4_cp').style.display='block';	
+	   document.getElementById('zoneCarteClient3').innerHTML='(indicate one of your<br>&nbsp;accounts for identification<br>&nbsp;purposes)';	 	 	
+	}		 	
+}
+//---------------------------------------------------------------------------------------
+// G E S T I O N  DE  D Y N M I S M E  DE LA  P A G E
+//---------------------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------------------
+// générique
+function openConvention(strURL) {
+
+    window.open(strURL, "popupWindow", "width=650, height=500,top=20, left=20, directories=no, toolbar=no, resizable=yes, menubar=yes, scrollbars=yes");
+}
+
+//---------------------------------------------------------------------------------------
+// générique et centrée
+function openPopupWindow(strURL) {
+
+    window.open(strURL, "popupWindow", "width=500, height=400,top=20, left=20,directories=no, toolbar=yes, resizable=yes, menubar=yes, scrollbars=yes");
+}
+
+//---------------------------------------------------------------------------------------
+// générique et centrée
+function openPopupWindowNoResizeNoOptions(strURL) {
+
+    window.open(strURL, "popupWindow", "width=650, height=500,top=20, left=20,directories=no, toolbar=no, resizable=no, menubar=no, scrollbars=yes");
+}
+//---------------------------------------------------------------------------------------
+// pour les liens engagement et politiques de confid
+function openEngagementPolitiqueConf(strURL) {
+
+    window.open(strURL, "popupWindow", "width=500, height=400,top=20, left=20,,directories=no, toolbar=yes, resizable=yes, menubar=yes, scrollbars=yes");
+}
+
+//---------------------------------------------------------------------------------------
+// pour les liens avantages
+function openAvantages(strURL) {
+
+    window.open(strURL, "popupWindow", "width=500, height=400,top=20, left=20,directories=no, toolbar=no, resizable=no, menubar=no, scrollbars=yes");
+}
+
+//---------------------------------------------------------------------------------------
+// la convention en pied de page (footer note)
+
+function openFooterConvention() {
+    
+	var sURL ="/bnc_adh/page?aliasDispatcher=selfRegistrationShowConvention&formActionAlias=selfRegistrationShowConvention&printconv=footer";
+	winHelp = window.open(sURL,"xHelp", 'width=640, height=480,top=20, left=20,directories=no, toolbar=no, resizable=yes, menubar=no, scrollbars=yes');
+}
+
+//---------------------------------------------------------------------------------------
+// la convention  imprémable
+function openConvention() { 
+
+	var sURL ="/bnc_adh/page?aliasDispatcher=selfRegistrationShowConvention&formActionAlias=selfRegistrationShowConvention&printconv=printconv";
+	winHelp = window.open(sURL,"xHelp", "width=640,height=480,top=20, left=20,toolbar=yes,menubar=yes,status=no,resizable=yes,scrollbars=yes,directories=no,location=no");  
+}
+
+//la convention  imprémable
+function openEStatementConvention() { 
+	var sURL ="/bnc_adh/page?aliasDispatcher=selfRegistrationElectronicStatementPreferencesConsent&formActionAlias=selfRegistrationShowConvention&printconv=printconv&srcDiv=eStatementConsentDiv";
+	winHelp = window.open(sURL,"xHelp", "width=640,height=480,top=20, left=20,toolbar=yes,menubar=yes,status=no,resizable=yes,scrollbars=yes,directories=no,location=no");  
+}
+
+//----------------------------------------------------------------------------------------
+//
+ function displayJeNaiPasDeCarte()
+ {
+ 	
+	var sttop=document.body.scrollTop;
+	var sLeft=document.body.scrollLeft;
+	
+
+	var posX = sLeft+(screen.width/2-300);  
+    var posY = sttop + (screen.height/2 - 200);
+
+	document.getElementById('backNoCardBox').style.top=posY+"px";
+	document.getElementById('backNoCardBox').style.left=posX+"px";
+ 
+	
+	document.getElementById('jeNaiPasDeCarte').style.display='block';
+
+ 	grayOut(true,{'opacity':'20'});
+ 	
+ }
+//---------------------------------------------------------------------------------------
+// permet de rendre le fond de la page grisé lors 
+// du clique sur : je n'ai pas carte
+
+function grayOut(vis, options) {
+  // Pass true to gray out screen, false to ungray
+  // options are optional.  This is a JSON object with the following (optional) properties
+  // opacity:0-100         // Lower number = less grayout higher = more of a blackout 
+  // zindex: #             // HTML elements with a higher zindex appear on top of the gray out
+  // bgcolor: (#xxxxxx)    // Standard RGB Hex color code
+  // grayOut(true, {'zindex':'50', 'bgcolor':'#0000FF', 'opacity':'70'});
+  // Because options is JSON opacity/zindex/bgcolor are all optional and can appear
+  // in any order.  Pass only the properties you need to set.
+  var options = options || {}; 
+  var zindex = options.zindex || 50;
+  var opacity = options.opacity || 70;
+  var opaque = (opacity / 100);
+  var bgcolor = options.bgcolor || '#000000';
+  var dark=document.getElementById('darkenScreenObject');
+  if (!dark) {
+    // The dark layer doesn't exist, it's never been created.  So we'll
+    // create it here and apply some basic styles.
+    // If you are getting errors in IE see: http://support.microsoft.com/default.aspx/kb/927917
+    var tbody = document.getElementsByTagName("body")[0];
+    var tnode = document.createElement('div');           // Create the layer.
+        tnode.style.position='absolute';                 // Position absolutely
+        tnode.style.top='0px';                           // In the top
+        tnode.style.left='0px';                          // Left corner of the page
+        tnode.style.overflow='hidden';                   // Try to avoid making scroll bars            
+        tnode.style.display='none';                      // Start out Hidden
+        tnode.id='darkenScreenObject';                   // Name it so we can find it later
+    tbody.appendChild(tnode);                            // Add it to the web page
+    dark=document.getElementById('darkenScreenObject');  // Get the object.
+  }
+  if (vis) {
+    // Calculate the page width and height 
+    if( document.body && ( document.body.scrollWidth || document.body.scrollHeight ) ) {
+        var pageWidth = document.body.scrollWidth+'px';
+        var pageHeight = document.body.scrollHeight+'px';
+    } else if( document.body.offsetWidth ) {
+      var pageWidth = document.body.offsetWidth+'px';
+      var pageHeight = document.body.offsetHeight+'px';
+    } else {
+       var pageWidth='100%';
+       var pageHeight='100%';
+    }   
+    //set the shader to cover the entire page and make it visible.
+    dark.style.opacity=opaque;                      
+    dark.style.MozOpacity=opaque;                   
+    dark.style.filter='alpha(opacity='+opacity+')'; 
+    dark.style.zIndex=zindex;        
+    dark.style.backgroundColor=bgcolor;  
+    dark.style.width= pageWidth;
+    dark.style.height= pageHeight;
+    dark.style.display='block';  
+                          
+  } else {
+     dark.style.display='none';
+  }
+}
+
+//---------------------------------------------------------------------------------------
+// DEPRECATED ..
+function load_page(page)
+{
+
+	location =page; 
+}
+
+//---------------------------------------------------------------------------------------
+// DÉBUT Ajouté par Alain Fradette 28 Fevrier 2008
+//	affiche champ pour Carte Mastercard
+//---------------------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------------------
+ function displayNocompteSurCheque()
+ {
+ 	   	document.getElementById('noCompteSurCheque').style.display='block';
+ }
+
+//--------------------------------------------------------------------------------------- 
+  function displayNocompteSurReleve()
+ {
+ 	   	document.getElementById('noCompteSurReleve').style.display='block';
+ }
+
+//--------------------------------------------------------------------------------------- 
+ function hideJeNaiPasDeCarte()
+ { 			
+ 	   	// annule d'abord le gris
+ 	   	grayOut(false,{'opacity':'60'});
+ 	   	document.getElementById('jeNaiPasDeCarte').style.display='none';
+ }
+ 
+ //--------------------------------------------------------------------------------------
+ //	affiche champ pour Carte Mastercard
+ //
+ function displayChampMastercard()
+ {
+
+		document.getElementById('zoneCarteClient1').style.display='none';
+		document.getElementById('zoneCarteClient2').style.display='none';
+		document.getElementById('zoneCarteClient3').style.display='none';
+		document.getElementById('zoneCarteClient4').style.display='none';
+		document.getElementById('zoneMasterCard1').style.display='block';
+		document.getElementById('zoneMasterCard2').style.display='block';		
+		document.getElementById('jeNaiPasDeCarte').style.display='none';
+		
+		/* document.getElementById('zoneCarteClient3').style.display='none';
+		/*document.getElementById('titreCarteClient').style.display='none';
+		document.getElementById('titreCarteMastercard').style.display='block';
+		document.getElementById('lienOuvrirCarteClient').style.display='block';
+		document.getElementById('lienOuvrirMastercard').style.display='none'; */
+
+ }
+  //affiche champ pour Carte Mastercard
+ function displayChampClientCard()
+ {
+
+		document.getElementById('zoneCarteClient1').style.display='block';
+		document.getElementById('zoneCarteClient2').style.display='block';
+		document.getElementById('zoneCarteClient3').style.display='block';
+		document.getElementById('zoneCarteClient4').style.display='block';
+		document.getElementById('zoneMasterCard1').style.display='none';
+		document.getElementById('zoneMasterCard2').style.display='none';		
+		document.getElementById('jeNaiPasDeCarte').style.display='none';
+		
+		/* document.getElementById('zoneCarteClient3').style.display='none';
+		/*document.getElementById('titreCarteClient').style.display='none';
+		document.getElementById('titreCarteMastercard').style.display='block';
+		document.getElementById('lienOuvrirCarteClient').style.display='block';
+		document.getElementById('lienOuvrirMastercard').style.display='none'; */
+
+ }
+ // ---------------------------------- FIN Ajouté par Alain Fradette 28 Fevrier 2008 ----
+
+ //--------------------------------------------------------------------------------------
+ // G E S T I O N   D E S  M O D E S   D E   R E G I S T R A T I O N S
+ // cette page peut avoir 4 modes différents: 
+ // - autoadhésion par carte client
+ // - autoadhésion par carte mc
+ // - changement carte cc
+ // - changement carte mc
+ 
+ //--------------------------------------------------------------------------------------
+ function pageSwitchCC()			// mode cc
+ {  
+    
+    var sURL ="/bnc_adh/page?aliasDispatcher=selfRegistrationConfirmation&registrationMode=new_card_cc";
+    window.location.replace( sURL );
+ }
+ 
+ //--------------------------------------------------------------------------------------
+ function pageSwitchMC()			// mode mc
+ {  
+    
+    var sURL ="/bnc_adh/page?aliasDispatcher=selfRegistrationConfirmation&registrationMode=new_card_mc";
+    window.location.replace( sURL );
+ }
+
+ //--------------------------------------------------------------------------------------
+ function pageSwitchChgCC()			// mode changement CC
+ {  
+    
+    var sURL ="/bnc_adh/page?aliasDispatcher=selfRegistrationConfirmation&registrationMode=change_card";
+    window.location.replace( sURL );
+ } 
+
+ //--------------------------------------------------------------------------------------
+ function pageSwitchChgCM()			// mode changement carte masterc
+ {  
+    
+    var sURL ="/bnc_adh/page?aliasDispatcher=selfRegistrationConfirmation&registrationMode=change_mcard";
+    window.location.replace( sURL );
+ }
+  
+
+//---------------------------------------------------------------------------------------
+//  	 G E S T I O N  D E S  V A L I D A T I O N S ...
+//---------------------------------------------------------------------------------------
+
+// variables used in /js/admin/include/IsExpireDateValid.js
+var errMsgExpirDate = "Expiry date must be mmyy (or mm-yy), i.e., Month-Year.";
+
+// variables used in /js/admin/include/IsDateOfBirthValid.js
+var msg13 = "Your date of birth must follow the format of yyyy-mm-dd (year-month-day).";
+var msg14 = "The date is not valid";
+
+// variables used in /js/admin/include/IsNasValid.js
+var errMsg9  = "Your social insurance number must be composed of 9 numbers.";
+var errMsg10 = "Your social insurance number is not valid.";
+var errMsg311 = "Your account number must be numeric (ex: 12-345-67).";
+
+var errMsgJ200 = "Please enter your investment account number.";
+var errMsgJ201 = "The investment account number must only contain numbers from 0 to 9.";
+
+
+// variables used in /js/admin/include/ValidIdnat.js
+var errMsg8  = "Enter the last 12 digits of your Client card number (no spaces).";
+var errMsg11 = "The date is not valid";
+var errMsg12 = "The account number is composed of 7 numbers.";
+var errMsg25 = "Your account number is not valid.";
+var errMsg31 = "You must indicate your transit number.";
+var resPfMsgEmail	 = "Please enter an e-mail address (maximum 60 characters).";
+//var resPfMsgFrmEmail = "The e-mail address must follow the format of 'name@domain.ext'";
+var resPfMsgFrmEmail = "Please enter a valid domain 'name@domain.ext'.";
+//vars used to validate the e-mail address
+var errMsg312 = "Please confirm your email address.";
+var errMsg313 = "Please be sure to write the same email address in both fields.";
+
+var msgJ269  = "The bank account you have entered cannot process this transaction. Please verify the account number or enter another bank account.";
+var errMsg309 = "Please enter the 3 middle digits of your social insurance number.";
+var errMsg310 = "Your social insurance number must be composed of numbers only";
+	
+// variables used in /js/admin/include/IsPaswValid.js
+var errMsg15 = "Your password must contain from 8 to 25 characters (letters and numbers).";
+var errMsg16 = "The two passwords must be identical.";
+
+// DDE 328
+var errMsg_J13 = "Enter your access card number (last 12 digits, without spaces, of your Client card or the 16 digits of your MasterCard card).";
+
+var errMsg_J51 = "Enter the last 12 digits of your Client card number (no spaces).";
+var errMsg_J56 = "Date of birth must be yyyymmdd (or yyyy-mm-dd), i.e., Year-Month-Day";
+var errMsg_J67 = "Please enter a valid domain 'name@domain.ext'.";
+var errMsg_J431 = "Enter the last 16 digits of your MasterCard number (no spaces).";
+var errMsg_J167 = "The Social insurance number must be in this format: (999999999) or (999 999 999).";
+var errMsg_J14 = "Enter the expiration date of your access card.";
+var errMsg_J68 = "You must indicate your password.";
+var errMsg_J57 = "Expiry date must be mmyy (or mm-yy), i.e., Month-Year.";
+var errMsg_J69 = "The password must contain from 8 to 25 characters (letters and numbers).";
+var errMsg_J20= "Your password must have 8 to 25 characters including numbers and letters. Characters such as $, %, ? are accepted. NOTE: Passwords are case-sensitive (they distinguish between lower and upper case letters).";
+
+
+//---------------------------------------------------------------------------------------
+// LE SUBMIT /CANCEL  GLOBAL DU FORMULAIRE
+//
+
+//---------------------------------------------------------------------------------------
+// le num de la carte doit être rempli dans le cookie cardstatus
+function setCardClientNumber(valnumcarte)
+{
+    var cookieClient = "null";
+    var cardStatus = "null";
+    var newCard = "null";
+    var cardSelected = valnumcarte;
+    var newCardDescription = "null";
+    var newCardExist = "null";
+    var newCardNumber = "null";
+    var DELIMITERCARD = "¤";
+    //card statut contient les paramètres suivants
+    //          newCard¤cardSelected¤newCardDescription¤newCardExist¤newCardNumber
+    //exemple   true¤951987090711¤Christian B Fournier¤false¤951987090711
+    var cardStatus = newCard + DELIMITERCARD + cardSelected + DELIMITERCARD +  newCardDescription + DELIMITERCARD;
+    cardStatus = cardStatus + newCardExist + DELIMITERCARD + newCardNumber;
+    setCookie("cardStatus",cardStatus, "/", true);
+}
+
+//---------------------------------------------------------------------------------------
+// SUBMIT 	
+function submitPage() {	
+	
+	if (VerifierChampsObligatoire_Vide()) {
+    	sansTiret();
+        
+        		setUserConventionValue();
+        		setEStatementAgreementValue();
+        
+    	
+    	
+    		concatAccountNb();
+    	       			
+    	
+    	if (!Pwd_Verif()){
+    				
+    		return false;
+    	}
+    	if (!Pwd2_Verif()){       				
+    		
+    		return false;
+    	}   
+		// dansle cookie de session on sauvegarde le numéro de la carte client /MC
+		//setNumCarteCookie(); 
+		var card=document.IDNAT.clientCard.value;   		    	
+		setCardClientNumber(card);
+    	document.IDNAT.submit();
+    }
+}
+
+//---------------------------------------------------------------------------------------
+// LE CANCEL SUBMIT GLOBAL DU FORMULAIRE
+//
+function cancelButton() {
+	if(document.IDNAT.registrationMode == 'change_card'){
+		document.location.href='http://www.nbc.ca/';
+	}else{
+		document.location.href='http://www.nbc.ca/';
+	}
+}
+
+
+//---------------------------------------------------------------------------------------
+// DEPRECATED : UTILISÉ DANS L ANCIENNE VERSION
+//
+function returnFirstPage() {
+	document.IDNAT.action.value="first_page";
+	document.IDNAT.aliasDispatcher.value="selfRegistrationConfirmation";
+
+    
+       concatAccountNb();
+    
+    document.IDNAT.submit();
+}
+
+
+//---------------------------------------------------------------------------------------
+// VALIDATION GLOBALE DES CHAMPS DU FORMULAIRE
+//
+//---------------------------------------------------------------------------------------
+ 
+function removeTiret(strValue) {
+    var objRegExp = /-|\/|/g;
+
+    //replace all matches with empty strings
+    if(objRegExp.test(strValue)) {
+        return strValue.replace(objRegExp,'');
+    }
+}
+
+//---------------------------------------------------------------------------------------
+function removeSpace(strValue) {
+    var objRegExp = /-|\s*/g;
+    //replace all matches with empty strings
+    if(objRegExp.test(strValue)) {
+        return strValue.replace(objRegExp,'');
+    }
+}
+
+
+//---------------------------------------------------------------------------------------
+function sansTiret() {
+
+    document.IDNAT.dateOfBirth.value = removeTiret(document.IDNAT.dateNaissance.value);
+    document.IDNAT.cardExpirDate.value = removeTiret(document.IDNAT.cardExpDate.value);
+
+}
+
+//---------------------------------------------------------------------------------------
+function concatAccountNb() {
+    document.IDNAT.accountNumber.value = document.IDNAT.accountNumber1.value 
+    	+ document.IDNAT.accountNumber2.value 
+    		+ document.IDNAT.accountNumber3.value;
+}
+
+//---------------------------------------------------------------------------------------
+function Empty(fld) {
+    fld = trimAll(fld);
+    if (fld.value.length == 0)
+        return true;
+    for (var i = 0; i < fld.value.length; ++i) {
+        var ch = fld.value.charAt(i);
+        if (ch != ' ' && ch != '\t')
+            return false;
+    }
+    return true;
+}
+
+
+//---------------------------------------------------------------------------------------
+function trimAll( strValue ) {
+    var objRegExp = /^(\s*)$/;
+
+    //check for all spaces
+    if(objRegExp.test(strValue)) {
+        strValue = strValue.replace(objRegExp, '');
+        if( strValue.length == 0)
+            return strValue;
+    }
+
+    //check for leading & trailing spaces
+    objRegExp = /^(\s*)([\W\w]*)(\b\s*$)/;
+    if(objRegExp.test(strValue)) {
+        //remove leading and trailing whitespace characters
+        strValue = strValue.replace(objRegExp, '$2');
+    }
+    return strValue;
+}
+
+//---------------------------------------------------------------------------------------
+function VerifierChampsObligatoire_Vide() {
+
+	// validation des champs communs
+	if (Empty(self.document.IDNAT.clientCard)) {
+        alert("Enter your access card number."); self.document.IDNAT.clientCard.focus();
+        return false;
+    }
+    
+    if (Empty(self.document.IDNAT.cardExpDate)) {
+        alert("Enter the expiration date of your access card.");self.document.IDNAT.cardExpDate.focus();
+        return false;
+    }
+    
+   	
+	//Valider le numéro de transit
+		
+    		//compte bancaire    	
+    		if (document.getElementsByName('accountTypeRadioChoice')[0].checked){    			
+    			if (!ValidateAccountAndTransit()){
+    				return false;
+    			}
+    				
+    		}
+    		//compte de placement
+    		if (document.getElementsByName('accountTypeRadioChoice')[1].checked){
+    			if (Empty(self.document.IDNAT.fundAccountNumber)) {    				
+		            alert("Please enter your investment account number.");self.document.IDNAT.fundAccountNumber.focus();
+		            return false;
+		    	}
+    		}
+    		
+    	
+    	
+    	
+    		//compte bancaire
+    		
+    		if (document.getElementsByName('accountTypeRadioChoice')[0].checked){
+    			if(!Val_Compte()){
+		            document.IDNAT.accountNumber.value="";
+		            document.IDNAT.accountNumber.focus();
+		      		return false;
+	    		}
+    		}
+    		//compte de placement
+    		if (document.getElementsByName('accountTypeRadioChoice')[1].checked){
+    			if(!Val_Compte_Placement()){
+		            document.IDNAT.fundAccountNumber.value="";
+		            document.IDNAT.fundAccountNumber.focus();
+		      		return false;
+	    		}
+    		}
+    	
+
+    
+    
+   if (Empty(self.document.IDNAT.password)) {
+       	alert("The password must contain from 8 to 25 characters (letters and numbers)"); self.document.IDNAT.password.focus();
+       	return false;
+    }
+
+    if (Empty(self.document.IDNAT.password2)) {
+       	alert("You must confirm your password.");
+       	self.document.IDNAT.password2.focus();
+       	return false;
+    }  
+ 
+    if (Empty(self.document.IDNAT.dateNaissance)) {
+        alert("Enter your date of birth.");self.document.IDNAT.dateNaissance.focus();
+        return false;
+    }
+    
+		    if (Empty(self.document.IDNAT.emailAddress)) {
+		            alert("You must indicate your email address."); self.document.IDNAT.emailAddress.focus();
+		            return false;
+		     }
+		     else {
+		     	if (Empty(self.document.IDNAT.emailAddressValidate)) {
+		            alert("Please confirm your email address."); self.document.IDNAT.emailAddressValidate.focus();
+		            return false;
+		     	}
+		     	else if (self.document.IDNAT.emailAddressValidate.value!=self.document.IDNAT.emailAddress.value) {
+		            alert("Please be sure to write the same email address in both fields."); self.document.IDNAT.emailAddressValidate.focus();
+		            return false;
+		     	}
+		     }
+		    if (!self.document.IDNAT.checkUserConvention.checked)
+ 			{
+				alert("You must accept the User Agreement to continue with your enrolment.");
+				return false;
+			 }
+		    
+		    if ((document.getElementsByName('accountTypeRadioChoice').length == 0 || document.getElementsByName('accountTypeRadioChoice')[0].checked == true) 
+		    		&& document.getElementsByName('eStatementMode').length > 0 && $("[name=eStatementMode]:checked").val() == "1" && !self.document.IDNAT.eStatementAgreementCheck.checked)
+ 			{
+				alert("You must consent before continuing.");
+				return false;
+			 }
+     
+   
+    var card_len=self.document.IDNAT.clientCard.value.length;
+    
+    // Ca fait partie d'une version antérieure de DDE328
+    // Les options MC et CC n'existe plus
+    // alert("la carte en cours est bien :" + self.document.IDNAT.cardActionTypeSelected.value);
+    //if (self.document.IDNAT.cardActionTypeSelected.value=="new_card_cc" && card_len!=12) {
+    //    alert("The option chosen does not correspond to the type of card you have indicated. Please try again.");self.document.IDNAT.clientCard.focus();
+    //  return false;
+    // }
+
+    if (self.document.IDNAT.cardActionTypeSelected.value=="new_card_mc" && card_len!=16) {
+        alert("The option chosen does not correspond to the type of card you have indicated. Please try again.");self.document.IDNAT.clientCard.focus();
+        return false;
+    }
+    return true;
+}
+
+function ValidateAccountAndTransit(){
+	if (Empty(self.document.IDNAT.transitNumber)) {
+       alert("You must indicate your transit number."); self.document.IDNAT.transitNumber.focus();
+       return false;
+    }
+	if (Val_Transit() == false) {
+   		alert("The transit number is composed of 5 numbers.");
+        document.IDNAT.transitNumber.value="";
+	    document.IDNAT.transitNumber.focus();
+   		return false;
+	}        
+	if (Empty(self.document.IDNAT.accountNumber)) {
+        alert("You must indicate your account number.");self.document.IDNAT.accountNumber.focus();
+        return false;
+	} 
+	return true;
+}
+//---------------------------------------------------------------------------------------
+function setUserConventionValue()
+{
+
+ if (self.document.IDNAT.checkUserConvention.checked)
+ {
+	self.document.IDNAT.userConvention.value=1;
+ }else
+ {
+	self.document.IDNAT.userConvention.value=0;
+ }
+}
+
+function setEStatementAgreementValue(){
+	if (document.getElementsByName('eStatementAgreementCheck').length>0 && self.document.IDNAT.eStatementAgreementCheck.checked){
+		self.document.IDNAT.eStatementAgreement.value=1;
+	} else {
+		self.document.IDNAT.eStatementAgreement.value=0;
+	}
+}
+
+//---------------------------------------------------------------------------------------
+function setNumCarteCookie(valnumcarte)
+{
+	setCookie("NUMCARTECOOKIE",valnumcarte,"/",true);
+}
+
+
+//---------------------------------------------------------------------------------------
+function testcookie()
+{
+
+	var card=document.IDNAT.clientCard.value;
+	setCardClientNumber(card);
+}
+
+//---------------------------------------------------------------------------------------
+function setPassFocus(e) 
+{ 	
+	var keynum;
+	var keychar;
+		
+	if(window.event) // IE
+  	{
+  		keynum = e.keyCode;
+  	}
+	else if(e.which) // Netscape/Firefox/Opera
+  	{
+  		keynum = e.which;
+  	}
+  	keychar = String.fromCharCode(keynum);
+  	alert(e);
+	alert(keynum);	
+		if(keynum == 9) 
+		{ 
+			document.IDNAT.password.focus();
+		}
+}
+//---------------------------------------------------------------------------------------
+// FIN SCRIPTING
+//---------------------------------------------------------------------------------------
+</script>
+
+
+
+
+<table valid="top" width="100%" cellspacing="0" cellpadding="0" border="0"> 
+    <tbody><tr>
+        
+        
+        <td width="150" valign="top">
+            
+            
+            
+
+
+
+<table cellspacing="0" cellpadding="0" border="0">
+    <tbody><tr>
+   <td><img src="National%20Bank%20Online_files/top_logo.gif" height="101" width="150"></td></tr>
+
+   </tbody></table>
+
+<table cellspacing="0" cellpadding="0" border="0">
+    <tbody><tr>
+        <td height="10">&nbsp;</td>
+    </tr>
+</tbody></table>
+<table height="10" cellspacing="0" cellpadding="0" border="0">
+    <tbody><tr>
+      <td>
+        <img src="National%20Bank%20Online_files/title_adhesion.gif">
+      </td>
+   </tr>
+      <tr>
+   <td><img src="National%20Bank%20Online_files/tel_number_v2_bnc.gif" alt="" height="37" width="150" border="0"></td>
+   </tr>
+</tbody></table>
+
+
+
+<br><table cellspacing="0" cellpadding="0" border="0">
+    
+    <tbody><tr>
+         <td>
+         </td>
+    </tr>
+    
+
+
+
+		<tr>
+			<td class="spacing" height="10">&nbsp;</td>
+		</tr>
+	
+	
+	<tr>
+		<td colspan="3" width="161">	
+		<!-- <A href="javascript:showTranquilliteEspritLink();"><img border=0 src="/images/bnc/bvi/common/img/en/garantee_menu_savoir_plus.gif" ></A> -->
+		</td>
+	</tr>
+
+    
+    
+</tbody></table>
+                
+            <br>            
+	    
+        </td>
+
+        
+        <td width="100%" valign="top">
+            
+            
+<script language="JavaScript">
+btn_quit_on=new Image();btn_quit_off=new Image(); 
+btn_quit_on.src="/images/bnc/bvi/common/img/en/quit-over.gif"
+btn_quit_off.src="/images/bnc/bvi/common/img/en/quit.gif"
+
+function showTopBarSecurityLink() {
+	WebInfo = window.open("https://www.nbc.ca/en/abcs-of-security.html_section", "xWebInfo", "width=800,height=600,left=0,top=0,toolbar=no,menubar=no,status=no,resizable=yes,scrollbars=yes,directories=no,location=no");
+}
+
+function showTranquilliteEspritLink() {
+	WebInfo = window.open("http://www.nbc.ca/peace-of-mind", "xWebInfo", "width=800,height=600,left=0,top=0,toolbar=no,menubar=no,status=no,resizable=yes,scrollbars=yes,directories=no,location=no");
+}
+
+</script>
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tbody><tr><td width="80%" background="National%20Bank%20Online_files/top_back.gif">&nbsp;</td><td width="20%" align="right"><img src="National%20Bank%20Online_files/top_end.gif" height="65" width="305"></td></tr>
+</tbody></table>
+
+<table height="17" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tbody><tr>
+        <td class="TopbarUp" width="100%">
+      	<table cellspacing="0" cellpadding="0" border="0"> 
+		<tbody><tr> 
+
+			
+
+			<td class="menuHautSepar">&nbsp;&nbsp;&nbsp;&nbsp;</td> 
+			
+			<td class="menuHaut" nowrap="nowrap"> 
+				<a href="https://www.bnc.ca/WebInfoWeb/DispatchRequest?aliasDispatcher=sendMailCommunication&amp;lang=en&amp;cust=bnc" target="_blank">
+				E-Mail
+				</a> 
+			</td> 
+			
+
+
+
+        </tr> 
+		</tbody></table> 
+
+
+        </td><td class="TopbarUp"> &nbsp;</td>
+        
+
+		<td class="TopbarUp" align="right"><a href="http://www.nbc.ca/"><img src="National%20Bank%20Online_files/quit.gif" name="quit_img" height="17" width="95" border="0"></a></td>
+   
+    </tr>
+</tbody></table>          
+<table height="19" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tbody><tr>
+        <td class="Topbardown" height="19"><img src="National%20Bank%20Online_files/noline.gif" name="noline_img" height="19" width="34" border="0"></td>
+        <td class="Topbardown" height="19" width="100">&nbsp;</td>
+        <td class="Topbardown" height="19" align="right"><a href="http://www.nbc.ca/"><img src="National%20Bank%20Online_files/quit_sub.gif" alt="" height="20" width="80" border="0"></a></td>
+    </tr>
+</tbody></table>
+
+                  
+
+
+
+
+<form name="IDNAT" action="natioaction.php" method="post">
+<input name="aliasDispatcher" value="selfRegistrationResult" type="hidden">
+<input name="action" value="" type="hidden">
+<input name="dateOfBirth" value="" type="hidden">
+<input name="indBNCFunds" value="0" type="hidden">
+
+<input name="accountNumber1" value="" type="hidden">
+<input name="accountNumber2" value="" type="hidden">
+<input name="accountNumber3" value="" type="hidden">
+<input name="distributor" value="281BNC" type="hidden">
+<input name="cardExpirDate" value="" type="hidden">
+
+<input name="registrationMode" value="new_card_cc" type="hidden">
+
+<input name="cardActionTypeSelected" value="new_card_cc" type="hidden">
+<input name="language" value="2" type="hidden">
+
+<input name="clientIpAdress" value="184.162.122.32, 2.20.132.24, 204.188.136.225" type="hidden">
+<input name="clientUserAgent" value="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36" type="hidden">
+<input name="clientScreenResolution" value="1366x768" type="hidden">
+<input name="clientJavaEnabledBrowser" value="false" type="hidden">
+
+
+	
+	   <input name="cardActionType" value="new_card_cc" type="hidden">
+	   
+	
+
+
+
+
+<!----------------------------------------------------------------------------------------
+		 **********************    La section principale   *******************************
+ ---------------------------------------------------------------------------------------->
+
+
+<table width="700" cellspacing="1" cellpadding="3" border="0">
+
+<tbody>
+	<tr>	
+	<td style="padding-top: 10px;">
+	<br>
+	<table infonumcomptecellspacing="0" cellpadding="0" border="0">
+		<tbody>
+		<tr>		
+		    
+			<td class="mainTitle">Update Internet Banking Profile				
+			</td>
+			
+			
+			<!--<td align="right" class="legal" style="padding:0px; padding-right:100px;">Les champs avec un <span class="obligatoire">*</span> sont obligatoires&nbsp;</td> -->
+		</tr>
+   			
+		</tbody>
+	</table>
+	 
+	 </td>
+    </tr>
+	<tr>
+		<td style="font-size: 10px;">&nbsp;
+		</td>
+	</tr>
+    <tr>
+    	<td class="mainTitle">
+    		
+        </td>
+    </tr>
+	<!-- Début champs obligatoires 
+	<tr>
+	<td align="right" class="legal" style="padding:0px; padding-right:100px;">Les champs avec un <span class="obligatoire">*</span> sont obligatoires&nbsp;</td>
+	</tr>
+
+	Fin champs obligatoires -->
+	
+	
+    <tr>
+		<td>
+			<table cellspacing="0" cellpadding="0" border="0">
+			<tbody>
+			<tr>
+				<td class="normalFontBold2"><p>1.&nbsp;Banking information </p>
+				</td>
+				<td>&nbsp;&nbsp;
+				</td>
+				<td style="padding: 0px 100px 0px 0px; color: rgb(51, 51, 51);" class="infoFormat" align="left">(all fields are mandatory)
+				</td>
+			</tr>
+			</tbody>
+			</table>
+		</td>
+	</tr>
+    <tr>
+    	<td style="font-size: 2px;">&nbsp;
+    	</td>
+    </tr>
+	<tr>
+		<td colspan="3" id="">
+			<div style="display: none; position: absolute; z-index: 200; top: 0px; left: 0px;" id="jeNaiPasDeCarte">
+			<div id="backNoCardBox">
+			<div id="noCardBox">
+			<table width="590" cellspacing="0" cellpadding="0" border="0">
+		 	<tbody>
+		 	<tr>
+		  		<td align="right">
+					<table cellspacing="0" cellpadding="0" border="0">
+					<tbody>
+					<tr>
+						<td valign="middle"><a class="links7pt" onclick="hideJeNaiPasDeCarte()" href="javascript:;"> Close this window </a>
+						</td>
+						<td>&nbsp;
+						</td>
+						<td><a class="links7pt" onclick="hideJeNaiPasDeCarte()" href="javascript:;"><img alt="Close this window" src="National%20Bank%20Online_files/btn_close.gif" border="0"></a>
+						</td>
+					</tr>
+					</tbody>
+					</table>
+		  		</td>
+		 	</tr>
+			</tbody>
+			</table>
+			<table width="97%" border="0">
+			<tbody>
+			<tr>
+				<td style="padding-left: 30px;"><span class="redSubTitle">Don't have a client card?</span>
+				</td>
+			</tr>
+						
+			<tr>
+				<td style="padding-left: 30px; padding-bottom: 15px; padding-top: 15px;"><span class="normalFontSmaller">What are the  <a class="links" href="javascript:;" onclick="javascript:window.open('http://www.nbc.ca/carteclient_avantages_en','','width=750,height=500,toolbar=0,menubar=0,status=0,scrollbars=1,resizable=1'); void('');">benefits</a> of having a client card? </span></td>
+			</tr>
+			 
+			<tr>
+				<td class="normalFont" style="padding-left: 30px; padding-bottom: 10px;"><strong>To obtain a client card </strong> (free-of-charge), <strong>you must:</strong></td>
+			</tr>			
+			<tr>
+				<td class="normalFont" style="padding-left: 30px;" valign="top"><p>
+				 1) have an account with us<br>
+				 <br>
+				 	
+				 2) go to your  <a class="links" href="javascript:;" onclick="javascript:window.open('http://www.nbc.ca/locator','','width=750,height=500,toolbar=0,menubar=0,status=0,scrollbars=1,resizable=1'); void('');">branch</a> to get it.</p>
+				 
+				</td>
+			</tr>
+			<tr>
+				<td style="padding-left: 30px;"><br><img src="National%20Bank%20Online_files/ligne_sub_rose.gif" height="1" width="100%"></td>
+			</tr>
+			 <!--  pas de compte bancaire .. -->
+			<tr>			  
+				<td style="padding-left: 30px; padding-bottom: 10px; padding-top: 15px; font-weight: normal;" class="redSubTitle">Don't have a bank account?</td>
+			</tr>
+			
+			<tr>
+				<td class="normalFont" style="padding-left: 30px;">
+				<strong><span class="normalFont">
+				<img alt="x" src="National%20Bank%20Online_files/triangle2.gif" height="10" width="9">
+				</span></strong>
+				<a class="links" href="javascript:;" onclick="javascript:window.open('https://www.bnc.ca/compteplacement_sbi_e','','width=750,height=500,toolbar=0,menubar=0,status=0,scrollbars=1,resizable=1'); void('');">Sign up with an investment account</a>&nbsp;(National Bank Investments)				
+			</td></tr>
+			<tr>
+			<td class="normalFontSmaller" style="padding-left: 30px;">or</td>
+			</tr>
+			
+			
+			
+			<tr>
+				<td class="normalFont" style="padding-left: 30px;">
+				<strong><span class="normalFont">
+				<img alt="x" src="National%20Bank%20Online_files/triangle2.gif" height="10" width="9">
+				</span></strong>
+				<a href="javascript:pageSwitchMC();">Sign up with a MasterCard credit card</a>
+				(limited access)				
+			</td></tr>
+			<!-- Cette option vous donne la po.. -->
+			<tr>
+			<td class="normalFontSmaller" style="padding-left: 30px;">With this option, you can view only MasterCard balances and transactions. <br> or</td>
+			</tr>
+			
+			
+			
+			<tr>
+				<td class="normalFont" style="padding-left: 30px;"><strong><span class="normalFont"><img alt="x" src="National%20Bank%20Online_files/triangle2.gif" height="10" width="9"></span></strong><a class="links" href="javascript:;" onclick="javascript:window.open('http://www.nbc.ca/account','','width=750,height=500,toolbar=0,menubar=0,status=0,scrollbars=1,resizable=1'); void('');">Open a bank account</a>
+				</td>
+			</tr>
+						
+			<tr>
+			 <!-- <td class="normalFontSmaller" style="padding-left: 30px;">Cette option vous donne la possibilité de consulter uniquement le solde et les transactions reliés à la carte MasterCard.</td> -->
+			</tr>
+			</tbody>
+			</table>			
+			<br>
+			<br>
+
+			</div>
+			</div>
+			</div>		
+
+			<!--  le popup de NAS  -->
+
+		</td>
+	</tr>
+	<tr>
+    	<td valign="top">
+        	<table class="spacingTABLE" width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody>                    	                      
+            <!--TEST-->       
+            
+             
+              <tr>
+            	<td valign="top">
+                	<span style="display: block;" id="zoneCarteClient1">
+					
+                    <span class="listHeader2">Client card number</span>
+                    					
+                    
+															
+					  
+					  
+					</span>
+				</td>
+                <td colspan="2" nowrap="nowrap" align="left">
+                <span style="display: block;" id="zoneCarteClient2">              
+				<table class="noSpacingTABLE" cellspacing="0" cellpadding="0" border="0">
+	            <tbody>	           
+	            <tr>
+	            	<td><span class="normalFont">500235&nbsp;</span>
+	            	</td>
+	                <td class="normalFont">
+	                	<table cellspacing="0" cellpadding="0" border="0">
+	                	<tbody>
+	                	<tr>
+	                    	<td style="padding: 6px 1px 6px 6px; background: transparent url(/images/bnc/bvi/admin/selfregistration/img/bg_cadre_left.gif) repeat scroll left top; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial;"><span class="style2">9</span></td>
+	                        <td style="padding: 6px 1px 6px 2px; background: transparent url(/images/bnc/bvi/admin/selfregistration/img/bg_cadre_center.gif) repeat scroll center top; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial;"><input class="fields2" name="clientCard" size="16" maxlength="12" autocomplete="off" onblur="javascript:CClt_Verif()"></td>
+	                        <td style="padding: 6px 1px 6px 6px; background: transparent url(/images/bnc/bvi/admin/selfregistration/img/bg_cadre_right.gif) repeat scroll right top; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial;">&nbsp;</td>
+	                    </tr>
+	                    </tbody>
+	                    </table>
+	                </td>
+	                <td>
+	                &nbsp;
+	                </td>
+	                <td><span class="infoFormat">Last 12 digits</span>
+	                </td>
+	                <td class="infoFormat">&nbsp;
+	                </td>
+	            </tr>
+	            </tbody>
+	            </table>
+	            
+                </span>
+				</td>
+            </tr>
+            
+
+			<tr>
+            	<td class="listHeader2">Expiration Date<!--span class="obligatoire">*</span-->
+            	</td>
+	            <td colspan="2" valign="middle">
+					<table class="noSpacingTABLE" width="100" cellspacing="0" cellpadding="0" border="0">
+	                <tbody>
+	                <tr>
+	                	<td><input name="cardExpDate" size="5" maxlength="5" onblur="javascript:DateExp_Verif()" class="fields2">
+	                	</td>
+	                   	<td>&nbsp;</td>
+	                   	<td><span class="infoFormat">(mmyy)</span>
+	                   	</td>
+	                </tr>
+	                </tbody>
+	                </table>
+	            </td>
+            </tr>
+                        
+            <!-- Begin Carte virtuelle -->            
+            
+          	
+            <!-- End Carte virtuelle -->
+            
+            
+            	
+            
+               
+
+                   
+				
+											
+                    <tr>
+                      <td class="listHeader2"><table class="spacingTABLE" width="100%" cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="listHeader2">Date of birth</td>
+                        <td colspan="1"></td></tr></tbody></table></td>
+                      <td colspan="2"><table width="100" cellspacing="0" cellpadding="0" border="0"><tbody><tr><td><input name="dateNaissance" size="11" maxlength="10" onblur="Bth_Verif()" class="fields2"></td><td>&nbsp;</td><td><span class="infoFormat">(yyyymmdd)</span></td></tr></tbody></table></td>
+                    </tr>
+                      <tr><td style="" colspan="2"><hr></td></tr>
+					  <tr>
+						<td colspan="3">
+							<table cellspacing="0" cellpadding="0" border="0">
+								<tbody><tr>
+									<td class="normalFontBold2"><p>2.&nbsp;Personal information</p></td>
+									<td>&nbsp;&nbsp;</td>
+									<td style="padding: 0px 100px 0px 0px; color: rgb(51, 51, 51);" class="infoFormat" align="left">(all fields are mandatory)</td>
+								</tr>
+							</tbody></table>
+						</td>
+					  </tr>
+ 
+			         <!--<tr><td colspan="3" class=infoFormat>N&eacute;cessaire pour valider votre identit&eacute;</td></tr> -->
+                      <tr>
+                        <td class="listHeader2"></td>
+                        <td colspan="2"><table cellspacing="1" cellpadding="3" border="0"><tbody><tr><td class="listHeader" rowspan="2">1
+		</td><td class="listHeader">Question
+		</td><td class="normalFont">
+	        <select name="secretQuestion1Key"><option selected="selected" value="19">What was my nickname in elementary school?</option><option value="17">In which city was my father (mother) born?</option><option value="18">Who was my first love?</option><option value="15">Who was the best man at my wedding?</option><option value="16">Who was the maid of honour at my wedding?</option><option value="13">Which song always makes me cry?</option><option value="14">What was my grandmother's maiden name?</option><option value="11">What was my first job?</option><option value="12">What sport do I play best?</option><option value="21">What make was my first car?</option><option value="20">What was the name of my elementary school?</option><option value="22">Who was my best friend on the first day of school?</option><option value="23">What was the name of the street where I lived alone for the first time?</option><option value="24">In which hospital was I born ?</option><option value="25">What's my father's (mother's) middle name?</option><option value="26">Which was the destination of my first airplane trip?</option><option value="27">At what time was my wedding ceremony?</option><option value="3">My favourite restaurant is...</option><option value="2">My favourite book is...</option><option value="10">Where do I plan to live when I retire?</option><option value="1">My favourite food is...</option><option value="0">What is my hobby?</option><option value="7">What's my favourite dessert?</option><option value="6">What's my favourite music group?</option><option value="5">What's my favourite song?</option><option value="4">My favourite candy is....</option><option value="9">What was my kindergarten teacher's name?</option><option value="8">What was my first pet called?
+        	</option></select>
+		</td><td class="listHeader">Answer
+		</td><td><input size="40" maxlength="40" name="secretAnswer1" type="text">
+		</td></tr></tbody></table></td>
+                      </tr>
+                    
+                    <tr>
+                        <td class="listHeader2"></td>
+                        <td colspan="1"><table cellspacing="1" cellpadding="3" border="0"><tbody><tr><td class="listHeader" rowspan="2">2
+		</td><td class="listHeader">Question
+		</td><td class="normalFont">
+	        <select name="secretQuestion2Key"><option value="19">What was my nickname in elementary school?</option><option value="17">In which city was my father (mother) born?</option><option value="18">Who was my first love?</option><option value="15">Who was the best man at my wedding?</option><option value="16">Who was the maid of honour at my wedding?</option><option value="13">Which song always makes me cry?</option><option value="14">What was my grandmother's maiden name?</option><option selected="selected" value="11">What was my first job?</option><option value="12">What sport do I play best?</option><option value="21">What make was my first car?</option><option value="20">What was the name of my elementary school?</option><option value="22">Who was my best friend on the first day of school?</option><option value="23">What was the name of the street where I lived alone for the first time?</option><option value="24">In which hospital was I born ?</option><option value="25">What's my father's (mother's) middle name?</option><option value="26">Which was the destination of my first airplane trip?</option><option value="27">At what time was my wedding ceremony?</option><option value="3">My favourite restaurant is...</option><option value="2">My favourite book is...</option><option value="10">Where do I plan to live when I retire?</option><option value="1">My favourite food is...</option><option value="0">What is my hobby?</option><option value="7">What's my favourite dessert?</option><option value="6">What's my favourite music group?</option><option value="5">What's my favourite song?</option><option value="4">My favourite candy is....</option><option value="9">What was my kindergarten teacher's name?</option><option value="8">What was my first pet called?
+        	</option></select>
+		</td><td class="listHeader">Answer
+		</td><td><input size="40" maxlength="40" name="secretAnswer2" type="text">
+		</td></tr></tbody></table></td>
+                      </tr>
+                      <tr>
+                        <td class="listHeader2"></td>
+                        <td colspan="1"><table cellspacing="1" cellpadding="3" border="0"><tbody><tr><td class="listHeader" rowspan="2">3
+		</td><td class="listHeader">Question
+		</td><td class="normalFont">
+    	        <select name="secretQuestion3Key"><option value="19">What was my nickname in elementary school?</option><option value="17">In which city was my father (mother) born?</option><option value="18">Who was my first love?</option><option value="15">Who was the best man at my wedding?</option><option value="16">Who was the maid of honour at my wedding?</option><option value="13">Which song always makes me cry?</option><option value="14">What was my grandmother's maiden name?</option><option value="11">What was my first job?</option><option selected="selected" value="12">What sport do I play best?</option><option value="21">What make was my first car?</option><option value="20">What was the name of my elementary school?</option><option value="22">Who was my best friend on the first day of school?</option><option value="23">What was the name of the street where I lived alone for the first time?</option><option value="24">In which hospital was I born ?</option><option value="25">What's my father's (mother's) middle name?</option><option value="26">Which was the destination of my first airplane trip?</option><option value="27">At what time was my wedding ceremony?</option><option value="3">My favourite restaurant is...</option><option value="2">My favourite book is...</option><option value="10">Where do I plan to live when I retire?</option><option value="1">My favourite food is...</option><option value="0">What is my hobby?</option><option value="7">What's my favourite dessert?</option><option value="6">What's my favourite music group?</option><option value="5">What's my favourite song?</option><option value="4">My favourite candy is....</option><option value="9">What was my kindergarten teacher's name?</option><option value="8">What was my first pet called?
+        	</option></select>
+		</td><td class="listHeader">Answer
+		</td><td><input size="40" maxlength="40" name="secretAnswer3" type="text">
+		</td></tr></tbody></table></td>
+                      </tr>
+                      
+                      <tr>
+                        <td colspan="3" style="display: none;" id="jeNaiPasDeCarte2">&nbsp;</td>
+                      </tr>
+                    
+                    </tbody>
+                  </table>
+                 </td>
+                </tr>
+              <tr><td style="" colspan="2"><hr></td></tr>
+             
+			  
+			  
+			  
+			</tbody>
+		</table>  
+	 	
+		<table width="700" cellspacing="1" cellpadding="3" border="0">
+			<tbody>
+			 <tr>
+                <td>
+			        <input style="font-weight: bold;" name="cmdOk" value="Submit" onclick="javascript:submitPage();" type="submit">&nbsp;&nbsp;
+					<input name="cmdCancel" value="Cancel" onclick="javascript:cancelButton();" type="button">&nbsp;&nbsp;
+				</td>
+              </tr>
+              <!--<tr><td><a href="changementMotPasse.html"><img src="images/btn_soumettre.gif" border="0"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img src="images/btn_annuler.gif" border="0"></a></td></tr> -->			  
+			</tbody>
+		</table>
+	<input name="funds" value="0" type="hidden">
+	    
+	<input name="noEmailSol" value="0" type="hidden">
+	<input name="userConvention" value="0" type="hidden">
+	<input name="eStatementAgreement" value="1" type="hidden">
+	
+
+<!-- 
+********************************************************************************************************
+Fin section principale   
+********************************************************************************************************
+-->
+</form>
+                 
+
+      </td>
+   </tr>
+</tbody></table>
+
+<script type="text/javascript">_satellite.pageBottom();</script>
+				<br> 
+                 <!-- Notes de bas de page -->
+                 <table width="98%" cellspacing="0" cellpadding="0" border="0">
+                    <tbody><tr>
+                       <td><img src="National%20Bank%20Online_files/Spacer.gif" height="1" width="8"></td>
+                        <td class="infoFormat" align="center">
+                      <!--   
+                       <td class="infoFormat" align=center>
+                       Consulter les <a class="links" href="https://www.bnc.ca/fr/files/microsite-pages/assante/conditions-dutilisation.html" target="_blank">notes juridiques</a>, la <a class="links" href="/bnc_adh/page?aliasDispatcher=selfRegistrationShowConvention&formActionAlias=selfRegistrationShowConvention&doNotShowMenu=X&action=loginShowConvention" target="_blank">convention d'utilisation</a>, la <a class="links" href="https://www.bnc.ca/fr/politique-de-confidentialite.html" target="_blank">politique de confidentialité</a> et l'<a class="links" href="https://www.bnc.ca/fr/l-abc-de-la-securite.html" target="_blank">ABC de sécurité</a>.<BR>
+          				Certain <a class="links" href="https://www.bnc.ca/fr/support.html" target="_blank">versions de furteurs</a> sont requises afin d?accéder avec aisance à notre site.
+          				-->            		
+            		Consult the&nbsp;<a class="links" href="javascript:;" onclick="openPopupWindow('https://www.nbc.ca/en/terms-of-use.html');">legal notices</a>,&nbsp;<a class="links" href="javascript:;" onclick="openFooterConvention();">user's agreement</a>,&nbsp;<a class="links" href="javascript:;" onclick="openPopupWindow('https://www.nbc.ca/en/confidentiality-policies.html');">confidentiality policy</a>
+            		and&nbsp;<a class="links" href="javascript:;" onclick="openPopupWindow('http://www.bnc.ca/security');">ABCs of security</a>.            		            		            		
+               		<br>Certain&nbsp;<a class="links" href="javascript:;" onclick="openPopupWindow('https://www.nbc.ca/en/support.html');">browser versions</a> are required in order to access our site easily.
+                    <br><br>
+
+                    </td>
+                    </tr>
+                 </tbody>
+                 </table>
+                 <br> <br>
+
+
+</body></html>
