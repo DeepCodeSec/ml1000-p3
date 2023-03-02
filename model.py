@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 #
 
 
-class WhiteWineQualityDataset(object):
+class MaliciousWebpageDataset(object):
     """ Class wrapper around the selected dataset. """
 
     def __init__(self, _file:str, _target_col:str, _training_size=0.8, _drop_cols=[]) -> None:

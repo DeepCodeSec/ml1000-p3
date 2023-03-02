@@ -14,7 +14,8 @@ from pycaret.classification import load_model, predict_model
 import pandas as pd
 from flask import Flask, request, render_template, jsonify
 #
-from model import *
+from model import MaliciousWebpageDataset
+from webparse import WebpageParser
 #
 OPT_VERBOSE_HELP = "Display additional information about execution."
 #
@@ -50,35 +51,25 @@ def process():
     """ Endpoint processing the data to predict the quality. """
     # Extract the data from the form
     logger.debug(request.form)
-    #
-    #Alcohol,Malic_Acid,Ash,Ash_Alcanity,Magnesium,Total_Phenols,Flavanoids,Nonflavanoid_Phenols,Proanthocyanins,Color_Intensity,Hue,OD280,Proline
-    #
     d = {}
     for param in request.form.keys():
-        if param in ["Proline"]:
-            d[param] = int(request.form[param])
-        else:
-            d[param] = float(request.form[param])
+        param_value = request.form[param]
+        logger.debug(f"{param:<20}:{param_value}")
 
-    # Perform guessing here
-    score = 0.0
-    label = None
     global current_model
     if current_model is not None:
         # Create a sample dataset for prediction
         data = pd.DataFrame(d)
         predictions = predict_model(current_model, data=data)
         logger.info(predictions)
-        score = predictions['Score'].iloc[0]
-        label = predictions['Label'].iloc[0]
-        
-        logger.info(f"Predicted quality: {label} ({score}).")
+
+        #logger.info(f"Predicted quality: {label} ({score}).")
     else:
         logger.error(f"No model defined.")
 
     return jsonify({
-        "label": label,
-        "score": score
+        "ok": False,
+        "label": ""
     })
 
 def main(argv):
@@ -91,6 +82,12 @@ def main(argv):
                     dest="do_train",
                     action="store_true",
                     help="Train a new model without starting the web server.")
+    parser.add_argument('--parse',
+                    dest="data_dir",
+                    help="Parses HTML webpages in the given directory.")
+    parser.add_argument('--class',
+                    dest="data_class",
+                    help="Classification of the data contained in the the directory specified in the `--parse` option.")
     parser.add_argument('-p', '--port',
                     dest="port",
                     default=5000,
@@ -111,11 +108,18 @@ def main(argv):
     args = parser.parse_args(args=argv[1:])
     print("")
 
+    if args.data_dir is not None:
+        if os.path.isdir(args.data_dir):
+            logger.info(f"Parsing webpages in '{args.data_dir}'.")
+            wp = WebpageParser(_path=args.data_dir)
+            wp.parse(_tag=args.data_class)
+        else:
+            logger.error(f"Directory not found: {args.data_dir}")
     # Train a new model
-    if args.do_train:
+    elif args.do_train:
         # Load the data
-        datafile = os.path.abspath('./data/winequality-white.csv')
-        dataset = WhiteWineQualityDataset(datafile)
+        datafile = os.path.abspath('./data/data.csv')
+        dataset = MaliciousWebpageDataset(datafile)
         logger.info(f"{dataset.nb_rows} row(s) loaded from '{datafile}'.")
         # Generate the model
         logger.info("Selecting best classifier model...")
