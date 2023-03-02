@@ -41,6 +41,8 @@ $ (venv) python3 app.py
 
 ## Application
 
-* [https://app4appts.herokuapp.com/](https://app4appts.herokuapp.com/)
+* [App on Heroku](https://ml1kp3.herokuapp.com/)
 
 ## References
+
+* [Dataset](https://www.kaggle.com/datasets/asifejazitu/phishing-dataset)
