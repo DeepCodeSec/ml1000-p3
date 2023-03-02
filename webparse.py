@@ -49,7 +49,7 @@ class WebpageParser(object):
                         html = f.read()
                         soup = BeautifulSoup(html, 'html.parser')
                         # get the title of the webpage
-                        if soup.title is not None:
+                        if soup.title is not None and soup.title.string is not None:
                             wp_title = soup.title.string.strip().lower()
                             features["title_raw"] = " ".join(nltk.word_tokenize(wp_title))
                         else:

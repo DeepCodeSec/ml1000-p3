@@ -1,0 +1,302 @@
+    
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <TITLE>Log In to Fidelity Investments</TITLE>
+
+        <META name="OASIS" content="438144.3.0">
+        <meta name="description" content="Log in to your Fidelity Investments or NetBenefits accounts here.">
+        <meta name="description" content="Log in to your Fidelity Investments or NetBenefits accounts here."/>
+        <META http-equiv="Expires" content="Mon 13 Jun 1988 00:00:00 GMT">
+        <META http-equiv="pragma" content="no-cache">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+        <META name="eReview" content="609606.5">
+        <!--[if lt IE 9]>
+        <script src="/ftgw/pages/js/common/html5shiv.js"></script>
+        <![endif]-->
+        
+		<!-- Start Measurement Code:  Do not remove.  -->
+		<script language="JavaScript" type="text/javascript" src="https://nexus.ensighten.com/fidelity/prod/Bootstrap.js"></script>
+		<!-- End Measurement Code:  Do not remove.  -->
+        
+        <link href="/ftgw/pages/css/common/bootstrap.3.2.css" rel="stylesheet" type="text/css" media="screen, print"/>
+        <link href="/ftgw/pages/css/common/bootstrap-theme.css" rel="stylesheet" type="text/css" media="screen, print"/>
+        <link href="/ftgw/pages/css/retail/defaultWeb/retailResponsive.css" rel="stylesheet" type="text/css" media="screen, print"/>
+
+    </head>
+
+    <body>
+        <div class="container">
+
+            <header id="header" role="banner">
+                <div class="lockIcon"></div>
+                <a title="Go to Fidelity homepage" href="http://www.fidelity.com/">
+                   <img width="112" alt="Fidelity.com Home" src="/ftgw/pages/images/common/fidelity_logo.png">
+                </a>
+                <div class="off-screen">This is a secure transaction.</div>
+            </header><div id="defaultLogin" class="col-xs-12 col-sm-6">
+    <h1>Log In</h1>
+    <p>If you have an account on NetBenefits, use the same username and password.</p>
+    
+
+
+<div class="fs-step fs-hidden" id="step-init" data-title="Login" data-operation="Login">
+    <form id="Login" name="Login" action="/ftgw/Fas/Fidelity/RtlCust/Login/Response" method="post" role="form" novalidate="novalidate" >
+        <input type="hidden" name="DEVICE_PRINT" value="" autocomplete="off" />
+        <div id="fs-username-entry-div" role="group" aria-label="Username Entry">
+            <label id="fs-userid-label" for="userId-input">Username</label>
+            <div id="fs-username-div">
+                <select id="userId-select" class="fs-hidden" aria-hidden="true" name="SSN" required="required" aria-required="true" data-reset-text="Use a saved username" tabindex="1">
+                                    <option value="new">Add/Use another username</option>
+                </select>
+                <input class="fs-hidden fs-mask-username fs-nounmask" autocomplete="off" aria-hidden="true" aria-required="true" id="userId-input" autocomplete="off" value="" type="text" maxlength="15" required="required" aria-describedby="fs-user-info" data-masklength="-3"
+                       data-clear="true" data-msg-required="Please enter your username" data-msg-invalid="This field is not properly formatted" tabindex="1"/>
+			    <input id="hiddenId" name="SSN" value="" type="hidden" maxlength="15"/>
+			</div>
+            <a id="fs-user-info-link" role="button" tabindex="5">
+                Username Information
+            </a>
+            <div id="fs-user-info" aria-live="polite" aria-relevant="all">
+                <div>For U.S. employees, your username (up to 15 characters) can be any customer identifier you've chosen or your Social Security number (SSN).<br/><br/>If you use your SSN to log in, please create a personalized username for added security. Use the Need Help links to the right to change your login information.<br/><br/>For outside the U.S. employees, your Participant Number is your Username and if you created a PIN previously, it is now considered your Password.</div>
+            </div>
+        </div>
+        <div id="fs-remember-me-div">
+            <label id="fs-remember-me-label" for="confirm">
+                <input id="confirm" type="checkbox" name="confirm" aria-label="Remember me" tabindex="6" autocomplete="off"
+                                              />
+                <input type="hidden" id="SavedIdInd" name="SavedIdInd" autocomplete="off"
+                                              value="N"
+                                              />
+                <span id="fs-rememberMe-text">Remember me</span>
+            </label>
+        </div>
+        <div id="fs-use-saved-id-div">
+            <a id="fs-use-saved-id" class="fs-hidden" href="#" aria-hidden="true" disabled="disabled">Use a saved username</a>
+        </div>
+        <div id="fs-password-entry-div" role="group" aria-label="Password Entry">
+            <label id="fs-password-label" for="password">Password</label>
+            <div id="fs-password-div">
+                <input id="password" type="password" name="PIN" required="required" maxlength="20" aria-required="true" aria-describedby="fs-error"
+                       data-msg-required="Please enter your password" data-msg-invalid="This field is not properly formatted" data-clear="true" tabindex="2"/>
+            </div>
+            <a id="fs-password-info-link" role="button" tabindex="8">
+                Password Information
+            </a>
+            <div id="fs-password-info" aria-live="polite" aria-relevant="all">
+                <div>Use 6 to 20 letters, numbers, and/or special characters</div>
+            </div>
+        </div>
+        <div id="fs-submit-div">
+            <button id="fs-login-button" type="submit" tabindex="3">Log In</button>
+        </div>
+    </form>
+</div></div>
+
+<div id="rightColumn" class="col-xs-12 col-sm-6">
+    <h2>New User?</h2>
+    <p>
+    	<button role="button" id="registerNow" class="button-component button--secondary button--secondary-action">Register Now</button>
+    </p>
+
+    <h3>Need Help Logging In?</h3>
+    <ul>
+    	<li id="havingTroubleLink">
+            <a href="/ftgw/Fas/Fidelity/RtlCust/IdentifyUser/Init" tabindex="11">Having Trouble with Your Username or Password?</a>
+        </li>
+        <li>
+            <a href="http://personal.fidelity.com/accounts/services/content/pinchange2.shtml.cvsr?refhp=c" tabindex="12">Frequently Asked Questions</a>
+        </li>
+        <li>
+        	<a href="http://www.fidelity.com/security/overview" target="_blank" tabindex="13">Online Security <div class="OiaNW-icon"><span class="off-screen">Opens in a new window.</span></div></a>
+        </li>
+    </ul>
+
+    <h4>Log In to Other Fidelity Sites</h4>
+
+    <ul>
+        <li><a href="https://login.fidelity.com/ftgw/Fas/Fidelity/NBPart/Login/Init?ISPBypass=true" tabindex="14">Log in to your employee benefits on NetBenefits<sup>&reg;</sup></a></li>
+        <li><a href="https://login.fidelity.com/ftgw/Fas/Fidelity/CgfCust/Login/Init" tabindex="15">Log in to Fidelity Charitable<sup>SM</sup></a></li>
+    </ul>
+</div>
+
+
+<div id="conditions" class="col-xs-12">
+    <p><a href="http://personal.fidelity.com/misc/legal/sofclegal.html.cvsr" target="_top" tabindex="190">National Financial Services LLC Statement of Financial Condition</a>
+    </p>
+    <p>Use of this site involves the electronic transmission of personal financial information. Using this product is consent to such transmission of this information; such consent is effective at all times when using this site. Fidelity supports 128-bit <a href="http://personal.fidelity.com/accounts/services/findanswer/content/security.shtml.cvsr" tabindex="194">&nbsp;browser encryption.&nbsp;</a> Usage of Fidelity's online trading services constitutes agreement of the <a href="https://scs.fidelity.com/webxpress/electronic_services_agreement.shtml" tabindex="196"> &nbsp;Electronic Services Customer Agreement</a> &nbsp;and&nbsp <a href="https://scs.fidelity.com/webxpress/license_agreement.html" tabindex="198">License Agreement.</a>
+    </p>
+    <p>Before investing, consider the funds' investment objectives, risks, charges, and expenses. Contact Fidelity for a prospectus or, if available, a summary prospectus containing this information. Read it carefully.</p>
+    <p><span class="org">Fidelity Brokerage Services LLC</span>, Member&nbsp;NYSE,&nbsp;SIPC.<span class="adr"> <span class="street-address">900 Salem Street</span>, <span class="locality">Smithfield</span>, <abbr class="region" title="Rhode Island">RI</abbr> <span class="postal-code">02917</span></span></p>
+    <p>609606.8.0</p>
+</div>
+
+<script type="text/javascript" src="/ftgw/pages/widget/js/jquery/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="/ftgw/pages/capability/common/defaultWeb/js/rsa/device_print.min.js"></script>
+<script type="text/javascript" src="/ftgw/pages/js/common/jquery.validate.js"></script>
+<script src="/ftgw/pages/js/common/response.js"></script>
+<script type="text/javascript" src="/ftgw/pages/js/common/bootstrap.min.js"></script>
+<script type="text/javascript" src="/ftgw/pages/retail/js/retailWidget.js?v=20170322"></script>
+<script type="text/javascript" src="/ftgw/pages/widget/js/fs-masking.jquery.js"></script>
+
+
+<script>
+ 	$(document).ready(function($) {
+ 	
+ 		$("#registerNow").click(function () {
+            var url = '/ftgw/Fas/Fidelity/RtlCust/IdentifyUser/Init?intent=nur';
+            window.location.href = url;
+            return false;
+        });
+        
+        $("#Login").addClass("cmxform form-horizontal");
+        $("#fs-username-entry-div").addClass("form-group");
+        $("#fs-userid-label").addClass("col-xs-3 col-sm-2 col-md-3 control-label");
+        $("#fs-username-div").addClass("col-xs-11 col-md-8");
+        $("#userId-select").addClass("form-control");
+        $("#userId-input").addClass("form-control");
+        $("#fs-user-info-link").attr({"href": "#", "data-toggle": "collapse", "data-target": "#fs-user-info"});
+        $("#fs-user-info-link").html("<div id='fs-user-info-icon' class='col-xs-1'><span class='off-screen'>Username Information</span></div>");
+        $("#fs-user-info").addClass("collapse out col-md-offset-3 col-xs-11 col-md-8");
+        $("#fs-remember-me-div").addClass("form-group");
+        $("#fs-remember-me-label").addClass("col-xs-12 col-md-offset-3 col-sm-7");
+        $("#fs-rememberMe-text").html("<a aria-label='Remember Me Information' target='_blank' href='https://login.fidelity.com/ftgw/pages/retail/html/include/RememberIDInfo.html' tabindex='7'>Remember me</a>");
+        $("#fs-use-saved-id-div").addClass("form-group");
+        $("#fs-use-saved-id").addClass("col-xs-12 col-md-offset-3");
+        $("#fs-password-entry-div").addClass("form-group");
+        $("#fs-password-label").addClass("col-xs-3 col-sm-2 col-md-3 control-label");
+        $("#fs-password-div").addClass("col-xs-11 col-md-8");
+        $("#password").addClass("form-control");
+        $("#fs-password-info-link").attr({"href": "#", "data-toggle": "collapse", "data-target": "#fs-password-info"});
+        $("#fs-password-info-link").html("<div id='fs-password-info-icon' class='col-xs-1'><span class='off-screen'>Password Information</span></div>");
+        $("#fs-password-info").addClass("collapse col-md-offset-3 col-xs-11 col-md-8");
+        $("#fs-submit-div").addClass("form-group");
+        $("#fs-submit-div").html("<div class='col-xs-12 col-md-offset-3'><button id='fs-login-button' class='button-component button--secondary' type='submit' tabindex='3'>Log In</button></div>");
+
+
+		$('#fs-login-button').attr("disabled", false);
+        //$('#fs-login-button').removeAttr('class');
+        //$('#fs-login-button').addClass('btn btn-primary');
+        
+        
+		$("#defaultLogin #Login").append("<div id='fs-start-page' class='form-group'><label class='col-xs-12 col-md-9 col-md-offset-3' for='SetLoginDefaults'><input type='checkbox' name='SetLoginDefaults' id='SetLoginDefaults' tabindex='9'>Change your start page</label></div>");
+////	
+		
+		$(document).keypress(function(e) {
+            if (e.which == 13) {
+                $("form").submit();
+            }
+        });
+        
+        $("#Login").submit(function(event) {
+            $('#fs-user-info').collapse({
+                toggle: false
+            })
+            $('#fs-password-info').collapse({
+                toggle: false
+            })
+
+            $('#fs-user-info').collapse('hide');
+            $('#fs-password-info').collapse('hide');
+
+            if ($(this).valid()) {
+                $('#fs-login-button').attr("disabled", true);
+                $('#fs-login-button').addClass('disabled');
+            } else {
+                return false;
+            }
+			
+			if($("#SetLoginDefaults").is(':checked')){
+        		var act = $("#Login").attr("action");
+       			 var actplus = act + "?AuthRedUrl=https://webxpress.fidelity.com/ftgw/webxpress/DefaultPage?SetLoginDefaults=Y";
+       			 $("#Login").attr("action", actplus);
+  	  		}
+        });
+        $("#step-init").removeClass("fs-hidden");
+
+        //Validation
+        $('#Login').validate({
+			ignore: ":disabled",
+            rules: {
+                'username-mask': {
+                    required: true,
+                    maxlength: 15
+                },
+                'password': {
+                    required: true,
+                    maxlength: 15
+                }
+            },
+            messages: {
+                'username-mask': {
+                    required: 'Please enter your username',
+                },
+                'password': {
+                    required: 'Please enter your password'
+                }
+            },
+            errorPlacement: function(error, element) {
+				 error.attr("role","alert");
+		      	 error.attr("aria-atomic", true);
+				 error.attr("id","fs-error");
+
+                if ((element.attr("name") == "SSN" || element.attr("id") == "userId-input") && error.text() != "") {
+                  $('#fs-user-info').after("<div id='user-error-msg' class='col-xs-12 col-md-offset-3'><div class='inline-error-icon'></div></div>");
+                    error.appendTo($('#user-error-msg'));
+                }
+
+                if (element.attr("name") == "PIN") {
+                    $('#fs-password-info').after("<div id='password-error-msg' class='col-xs-12 col-md-offset-3'><div class='inline-error-icon'></div></div>");
+                    error.appendTo($('#password-error-msg'));
+                }
+            },
+            success: function(label) {
+                if (label.attr('for') == "userId-input") {
+                    $('#user-error-msg').remove();
+                }
+
+                if (label.attr('for') == "password") {
+                    $('#password-error-msg').remove();
+                }
+            }
+        });
+        
+        
+        $("#userId-input").focus();
+        
+    });
+
+
+</script>
+ <!-- Start Measurement Code:  Do not remove.  -->
+	<script type="text/javascript" src="/ftgw/pages/js/common/ensighten_lazy.js"></script>
+<!-- End Measurement Code:  Do not remove.  -->	
+
+<footer id="footer" class="col-xs-12">
+    <div class="col-xs-12 col-sm-4 footer-logo">
+    	<a title="Go to Fidelity homepage" href="http://www.fidelity.com/" alt="Fidelity.com Home">
+        	<img class="footerLogo" title="Fidelity Investments. Smart Move." alt="Fidelity Investments." src="/ftgw/pages/images/common/logo_gray_trans.gif" border="0" hspace="0" vspace="2" />
+    	</a>
+    </div>
+    <div class="col-xs-12 col-sm-8 footer-right-content">
+        &copy; 1998&#150;<script type="text/javascript">document.write(new Date().getFullYear())</script>&nbsp; FMR LLC. All rights reserved.
+        <ul>
+            <li><a href="http://personal.fidelity.com/misc/legal/index_legal.shtml" target=_top>Terms of Use</a></li>
+            <li><a href="http://personal.fidelity.com/accounts/services/findanswer/content/index_privacy.shtml" target=_top>Privacy</a></li>
+            <li><a href="http://personal.fidelity.com/accounts/services/findanswer/content/index_security.shtml" target=_top>Security</a></li>
+            <li><a href="http://personal.fidelity.com/accounts/services/index_sitemap.html" target=_top>Site Map</a></li>
+        </ul>
+        <a href="http://www.fidelity.com/terms-of-use">This is for persons in the U.S. only.</a>
+    </div>
+</footer>
+
+
+</div>
+<script type="text/javascript" >var _cf = _cf || []; _cf.push(['_setFsp', true]); _cf.push(['_setBm', true]); _cf.push(['_setAu', '/resources/5435f6f8fd2307dc2cd8f69292215e']);</script><script type="text/javascript"  src="/resources/5435f6f8fd2307dc2cd8f69292215e"></script></body>
+</html>

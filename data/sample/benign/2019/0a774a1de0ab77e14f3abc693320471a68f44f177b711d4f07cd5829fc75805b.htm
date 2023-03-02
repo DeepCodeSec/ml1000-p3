@@ -1,0 +1,487 @@
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0,minimum-scale=1.0"
+		maximum-scale="1" charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css"
+		href="/rendition/eppublic/akpublic/css/index.css" />
+	<style>
+		#error {
+			font: 12px Arial, Helvetica, sans-serif;
+			color: red;
+		}
+		
+		body.waiting #outerContainer {
+			display: none;
+		}
+		
+		#outerContainer {
+			text-align: left;
+		}
+		.languageBar {
+			float: right;
+			font-weight: normal;
+			font-size: 16px;
+			color: #333333;
+			font: 14px Arial, Helvetica, sans-serif;
+		}
+		.languageBar u {
+			font-size: 16px;
+		}
+		#emailAddr {
+			margin-right: 5px;
+			width: 280px;
+			height: 26px;
+			font-style: italic;
+			font-size: 16px;
+		}
+		#footer-links{
+			padding: 0 0 30px 10px;
+		}
+		#footer-links span{
+			font-size: 11px;
+			color: #999;
+		}
+		#footer-links a {
+			cursor: pointer;
+			text-decoration: none;
+			font-size: 11px;
+			color: #999;
+		}
+		#footer-links a:hover{
+			text-decoration: underline;
+		}
+		.bottomAbsPosition {
+			position: absolute;
+			bottom: 0;
+		}
+		
+	</style>
+	<script type="text/javascript"
+		src="/rendition/eppublic/akpublic/js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript"
+		src="/rendition/eppublic/akpublic/js/jquery-ui-1.12.1.min.js"></script>
+	<script type="text/javascript"
+		src="/rendition/eppublic/akpublic/js/json2.min.js"></script>
+	<script type="text/javascript"
+		src="/rendition/eppublic/akpublic/evercookie/js/evercookie_crisp.js?v=3"></script>
+	<script type="text/javascript">
+	var emailAddressError = 'Please enter your business email address.';
+	var invalidAddressError = 'Please enter a valid email address.';
+	var systemError = 'A problem occurred while creating the personalized link used to register your device. Please try again or contact your Citi representative.';
+	var isTokenInvalid = false;
+	</script>
+	
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="/rendition/eppublic/akpublic/js/jquery.query-object.js"></script>
+<script type="text/javascript">
+
+var locale = "en";
+var langparam = "&language=";
+
+function changeLocale(newlocale) {
+	if (locale == newlocale)
+	{
+		return;
+	}
+	var newQuery = $.query.set("language", newlocale).toString();
+	var url = window.location.href;
+	if (url.indexOf("#") > -1){
+		url = url.substr(0,url.indexOf("#"));
+	}
+	if (url.indexOf("?") > -1){
+	  url = url.substr(0,url.indexOf("?"));
+	}
+	window.location.replace(url + newQuery);
+}
+
+function generateOTP(uri)
+{
+	var emailAddr = $('#emailAddr').val();
+	if ($.trim(emailAddr) == ''){
+		$('#error').html(emailAddressError);
+		return;
+	}	
+	
+	if(!validateEmail() && !($.trim(emailAddr) == '')) {
+		$('#error').html(invalidAddressError);
+		return;
+	} else {
+
+		// show error message for simulator
+		{
+		  
+		}
+		showMask();
+		$.ajax({
+			type : "POST",
+			url : uri,
+			data : {
+				documentID :  "0FFaqwhbbgo3IxwWKZ2vfc5H1Wg5carUYLWGSVHsNmcS97faXfRNxmJ68JaTny5Paiwmg20YsUNVemUHmjwKCrTNl5VW7UPcaPDzHJLiYfNhJL2wvPbf4tIv0JKo3axR2mXuh_wrUQvi0t2F_AVWJQOrQ0Dxbg-E-jS3HIchurN8elOHFR0wz5c2smZAu7QuaZ95zsQdHsz1AwL2Uju9EAY5ghVG4p-hyYp1siPeBW4p1Ci9CGOc_4E-6aR6iYsv7E33vADPfYU84w8dWUX-Ynpua2VjUEfx",
+				emailAddr : $('#emailAddr').val(),
+				
+				language : locale,
+				key : 'MEE2MTAxNzRERDI3NEJEM0I4QjE1NjdDMzdEMjRDREQsWVFpTEM5TEg3ZXhKaFJ3ZExqWGxqN0xyYWUwUkY2aWhSSkhDSG96aG52aw==',
+			},
+			dataType:"json",
+			success : function(data, status, xhr) {
+				if(data.status == "Y")
+	        	{
+	        	  	window.location.replace('/rendition/eppublic/service/successOTP.html?a=' + langparam + locale);
+	        	}
+	        	else
+	        	{
+	        		showErrorMessage();
+	        	}
+			},
+			error: function(xhr, status, errorThrown){
+				showErrorMessage();
+			}
+			});
+		
+	}
+	
+  }
+  
+function showErrorMessage(xhr)
+{
+	hideMask();
+	$('#error').html(systemError + getReferenceString(xhr));		
+}
+  
+function getReferenceString(xhr)
+{
+	if (xhr == null)
+	{
+	   return " Error Reference : xxxxxxxxxxxx";	
+	}
+	var ref = xhr.getResponseHeader("x-citiportal-requestid");
+    if (ref != null)
+	{
+		ref = " Error Reference : " + ref;
+	}
+	else
+	{
+		 ref = "";	
+	}
+	return ref;
+}
+  
+  function validateEmail() {
+		var status = false;
+		var emailRegEx = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+		if(document.otpForm.emailAddr.value.search(emailRegEx) == -1){
+			status = false;
+		} else {
+			status = true;
+		}
+		return status;
+	}
+  
+  function showMask() {
+	  $('body').append('<div class="loadmask"></div>');
+	  $('#outerContainer').addClass('masked');
+  }
+  
+  function hideMask() {
+	  $('body').find('.loadmask').remove();
+	  $('#outerContainer').removeClass('masked');
+  }
+  
+  
+</script>
+	
+	<script type="text/javascript">
+		//Avoid 'console' errors in browsers that lack a console.
+		(function() {
+		    var method;
+		    var noop = function () {};
+		    var methods = [
+		        'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
+		        'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
+		        'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
+		        'timeStamp', 'trace', 'warn'
+		    ];
+		    var length = methods.length;
+		    var console = (window.console = window.console || {});
+		    while (length--) {
+		        method = methods[length];
+		        // Only stub undefined methods.
+		        if (!console[method]) {
+		            console[method] = noop;
+		        }
+		    }
+		}());
+	</script>
+	<script type="text/javascript">
+		var UTILS = {};
+		UTILS.getParameters = function () {
+			try {
+				var search = location.search.substring(1);
+				var queryParams = search.split(/&/g);             
+				var resultArr = [];
+				for (var i=0; i<queryParams.length; i++) {
+					var temp = queryParams[i];
+					temp = '"'+temp.replace(/=/,'":"')+'"'
+					resultArr.push(temp);
+				}
+				return resultArr.length ? JSON.parse('{' + resultArr.join(",") + '}',
+		                 function(key, value) { return key===""?value:decodeURIComponent(value) }) : {}
+				                 
+			} catch (e) {
+				return {};
+			}
+		};
+		UTILS.urlParameters = UTILS.getParameters();
+		UTILS.getParameterByName = function (name) {
+		    return UTILS.urlParameters[name];
+		};
+		UTILS.getDomain = function() {
+			var domain = '';
+			var arr = location.host.split('.');
+			if(arr.length) {
+				domain += '.';
+				domain += arr[arr.length-2];
+				domain += '.';
+				domain += arr[arr.length-1];
+			}
+			return domain;
+		}
+		
+		$(function() {
+	
+			// This flag is to tackle timedout case
+			var windowReloadFlag = true;
+			
+			showMask();
+			
+			function showRegistrationScreen() {
+				windowReloadFlag = false;
+				hideMask();
+				$('body').removeClass('waiting');
+				if($(document).height() > $(window).height()) {
+					$('#footer-links').removeClass('bottomAbsPosition');
+				}
+			}
+			
+			$('#generateOPTDiv').on('click', function() {
+				generateOTP("/rendition/eppublic/service/generateOTP");
+			});	
+			$('#emailAddr').keypress(function(e) {
+		        if(e.which == 13) {
+		        	generateOTP("/rendition/eppublic/service/generateOTP");
+		        	e.preventDefault();
+		        }
+		    });
+			$('#translateEnLink').on('click', function() {
+				changeLocale("en");
+			});	
+			
+			$('#translateJaLink').on('click', function() {
+				changeLocale("ja");
+			});
+			var irEnv = window.location.host.indexOf('www.citivelocity.com') < 0 ? 'https://uat.ir.citi.com' : 'https://ir.citi.com';
+			var privacyStatement = '/zhvutneDE80d1ne%2Fczk97PJ8qGTS%2FaQsoMdOGX2r2JDKIGmQUgrCnlP4lCE9WLVbkWfCKtEM5%2Fg%3D';
+			if(window.location.href.split('&').indexOf('language=ja')>-1){
+				privacyStatement += '?jp';
+			}
+			var termOfUse = '/Zf0BNUIv2kQRw93hoMa7W5UCGaPtVyLZjqW6OV%2BkWUmh%2BzTCdRCxWlts5UKTT%2FQ%2FcxmJ0xqwkK8%3D';
+			// Privacy Statement and Terms of Use
+			$('#footer-links .privacyStatement').on('click', function(){
+				window.location.href = irEnv + privacyStatement;
+			});
+			$('#footer-links .termOfUse').on('click', function(){
+				window.location.href = irEnv + termOfUse;
+			});
+	
+			// Evercookie has 2 seconds to indentify the user
+			var timer = setTimeout(showRegistrationScreen, 2000);
+			
+			// Ever cookie
+			var cookieName = "cv_device_id";
+			try {
+				if(isTokenInvalid) {
+					clearTimeout(timer);
+					showRegistrationScreen();
+				}
+				else {
+					var ec = new evercookie({
+						domain : UTILS.getDomain()
+					});
+					ec.get(cookieName).done(function(x) {
+						if(x.val && windowReloadFlag) {
+							clearTimeout(timer);
+							ec.dropCookie(cookieName, x.val);
+							window.location.href = UTILS.getParameterByName("target");
+						}
+					}).fail(function() {
+						clearTimeout(timer);
+						showRegistrationScreen();
+					});
+				}
+			}
+			catch(e) {
+				console.log(e.stack);
+			}
+		});
+	</script>
+
+
+<script>
+(function(){
+function inIframe() {
+    try {
+        return window.self !== window.top;
+    } catch (e) {
+        return true;
+    }
+}
+if((window.BOOMR && window.BOOMR.version)) {return;}
+var dom,doc,where,iframe = document.createElement("iframe"),win = window;
+function boomerangSaveLoadTime(e) {
+win.BOOMR_onload=(e && e.timeStamp) || new Date().getTime();
+}
+if (win.addEventListener) {
+win.addEventListener("load", boomerangSaveLoadTime, false);
+} else if (win.attachEvent) {
+win.attachEvent("onload", boomerangSaveLoadTime);
+}
+iframe.src = "javascript:false";
+iframe.title = ""; iframe.role="presentation";
+(iframe.frameElement || iframe).style.cssText = "width:0;height:0;border:0;display:none;";
+where = document.getElementsByTagName("script")[0];
+where.parentNode.insertBefore(iframe, where);
+try {
+doc = iframe.contentWindow.document;
+} catch(e) {
+dom = document.domain;
+iframe.src="javascript:var d=document.open();d.domain='"+dom+"';void(0);";
+doc = iframe.contentWindow.document;
+}
+doc.open()._l = function() {
+var js = this.createElement("script");
+if(dom) this.domain = dom;
+js.id = "boomr-if-as";
+js.src = "https://c.go-mpulse.net/boomerang/" +
+"2PAW3-6BFQQ-6Z99D-HWNBC-DBZTN";
+BOOMR_lstart=new Date().getTime();
+this.body.appendChild(js);
+};
+doc.write('<body onload="document._l();">');
+doc.close();
+})();
+</script></head>
+<body class="waiting">
+	<div id="outerContainer">
+		<div id="mainContainer">
+			<div id="mainHeader">
+				<div class="leftPartSmall" style="left: 25px;"></div>
+				<div class="rightPartSmall" style="right: 20px;"></div>
+			</div>			
+			<div align="center" id="content" style="margin: 0 30px 0 35px; font-family: Arial;">
+				<form name="otpForm" onsubmit="return false;">
+				<table>
+					<tr>				
+						<th valign="top">
+							<table>
+								<tr>
+									<td align="left" valign="top" style="font-size: 36px; padding-bottom: 50px;font-weight: normal;line-height: normal;">
+										Welcome to Citi's digital research product.
+										<span class="languageBar">
+											<span id="translateEnLink" style="cursor: pointer;"><u>English</u></u></span>
+											<span> | </span>
+											<span id="translateJaLink" style="cursor: pointer;"><u>Japanese</u></span>
+										</span>
+									</td>
+								</tr>
+								<tr>
+									<td align="left" style="font-size: 18px; font-weight: normal; padding-bottom: 40px;line-height: 24px;">
+										A one-time registration process is required to gain access to our content. Please enter your email address and click '<span style="text-decoration: underline;">Register</span>'. A confirmation email will be sent to your email address within a few minutes to complete your registration.
+									</td>
+								</tr>
+								<tr>
+									<td align="left" style="padding-bottom: 40px;">
+										<table>
+											<tr style="height: 40px;">
+												
+												<td>
+													<input type="text" id="emailAddr" name="emailAddr" class="inputTextStyle" placeholder="Enter Corporate Email Address "/>
+													<button id="generateOPTDiv" style="width: 150px; height: 30px; background: #00A2FF; color: #FFF; font-weight: bold; border-radius: 5px;cursor: pointer;font-size: 16px;">
+														Register
+													</button>
+													
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+                                    <td align="left" style="font-size: 16px; font-weight: normal; padding-bottom: 20px;">
+                                        <strong>Having to register your device every time you access Citi Research? </strong>
+                                        Please visit our 
+                                        
+                                            
+                                            
+                                                <a href="/rendition/documents/help/akpublic/eppublic/Registration%20Guidelines.pdf" target="_blank">
+                                                    Device Registration Guide 
+                                                </a>
+                                            
+                                        
+                                        to amend your browser settings.
+                                    </td>
+                                </tr>
+								<tr>
+									<td align="left" style="font-size: 16px; font-weight: normal; padding-bottom: 20px;">
+										If you are not currently a Citi Client, please click 
+										<a href="/rendition/eppublic/service/clientRegistration?language=en"
+											onclick="window.open(this.href, 'newClientRegistrationWindow',
+														'menubar=yes,toolbar=yes,titlebar=yes,location=yes,status=yes,width=1000,resizable=yes,scrollbars=yes'); return false;">
+										    here 
+										</a>
+										or if you require further assistance please contact our support team at 
+									    
+                                            
+                                            
+                                                <a target="_parent" href="mailto:rschaccess@citi.com" style="color: #00a2ff;">rschaccess@citi.com.</a>
+                                            
+                                        
+									</td>
+								</tr>
+							</table>
+						</th>
+					</tr>
+				</table>
+				</form>
+			</div>
+		</div>
+		<div id="footer-links" class="bottomAbsPosition">
+			<span><a class="privacyStatement">
+				Privacy Statement
+			</a></span>
+			<span> | </span>
+			<span><a class="termOfUse">
+				Terms of Use
+			</a></span>
+		</div>
+	</div>
+</body>
+</html>

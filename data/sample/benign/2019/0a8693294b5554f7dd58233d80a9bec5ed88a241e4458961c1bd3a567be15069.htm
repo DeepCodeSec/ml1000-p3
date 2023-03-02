@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+
+<!-- template name: html.form.login.template.html -->
+ 
+
+<html lang="en" dir="ltr">
+<head>
+     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript">
+        function postOk()
+        {
+            document.forms[0]['pf.ok'].value = 'clicked';
+            document.forms[0].submit();
+        }
+
+        function postCancel()
+        {
+            document.forms[0]['pf.cancel'].value = 'clicked';
+            document.forms[0].submit();
+        }
+
+        function postOnReturn(e)
+        {
+            var keycode;
+            if (window.event) keycode = window.event.keyCode;
+            else if (e) keycode = e.which;
+            else return true;
+
+            if (keycode == 13)
+            {
+                document.forms[0].submit();
+                return false;
+            }
+            else
+                return true;
+         }
+
+         function setFocus()
+         {
+            //var platform = navigator.platform;
+            //if(platform != null)
+            //{
+                    document.getElementById('username').focus();
+            //}
+         }
+
+    </script>
+    <base href="https://fedsso3.gilead.com/"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>Sign On</title>
+    <link rel="stylesheet" media="all" type="text/css" href="assets/css/screen.1.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/fluid.1.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/fluid.landscape.1.css"/>
+</head>
+<!--body onload="setFocus()"-->
+<body>
+<div class="ping-container" style="width : 395px">
+    <div class="ping-header" style="height: 45px;">
+    </div>
+    <!-- .ping-header -->
+    <div class="ping-body-container" style="padding: 22px">
+        <div style="position : relative; min-height: 190px">
+            <form method="POST" action="/idp/uGXhn/resumeSAML20/idp/SSO.ping" autocomplete="off">
+
+                <div style="padding: 0px 5px 14px; font-size: 110%">
+                    <!--img src="assets/images/green_check.1.png"/-->
+                    <img src="gilead/assets/images/gilead_logo1.gif" style="width:200px ; padding: 2px"/>
+                    <!--html.form.login.template.headerMessage-->
+                    <div> Please sign in with your Network ID.
+                        </div>
+
+                                                        </div>
+
+                <div style="font-size: 84%; font-weight: bold;">Username</div>
+                <div><input id="username" type="text" size="36" name="pf.username" value="" autocorrect="off" autocapitalize="off" onKeyPress="return postOnReturn(event)" /><!----></div>
+                <div style="font-size: 84%; font-weight: bold;">Password</div>
+                <div><input id="password" type="password" size="36" name="pf.pass" onKeyPress="return postOnReturn(event)" /></div>
+                                <div class="ping-buttons" style="position: relative; margin: 18px 0 12px 0;">
+                    <input type="hidden" name="pf.ok" value=""/>
+                    <input type="hidden" name="pf.cancel" value=""/>
+
+                    <a href="javascript:postOk();" class="button normal allow" title="Sign On">Sign On</a>
+                    <!--a href="javascript:void(0)" onclick="postCancel();" class="button blue deny" title="Cancel">Cancel</a-->
+                    <a href="javascript:void(0)" onclick="window.location.reload();" class="button blue deny" title="Cancel">Cancel</a>
+
+                </div><!-- .ping-buttons -->
+                <div><a href="https://mfa.gilead.com/mfaportal/">Change Access Preferences</a></div>
+            </form>
+        </div><!-- .ping-body -->
+    </div><!-- .ping-body-container -->
+    <div class="ping-footer-container">
+        <!--div class="ping-footer">
+            <div class="ping-credits"><span>global.poweredBy</span> <a href="http://www.pingidentity.com">PingIdentity</a>
+            </div>
+        </div--><!-- .ping-footer -->
+    </div><!-- .ping-footer-container -->
+</div><!-- .ping-container -->
+</body>
+</html>
+
