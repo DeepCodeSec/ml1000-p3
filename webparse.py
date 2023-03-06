@@ -9,12 +9,17 @@ import logging
 import pandas as pd
 from bs4 import BeautifulSoup
 from nltk.corpus import stopwords
+from langdetect import detect
 
 logger = logging.getLogger(__name__)
 #
 # Define a function to check the method attribute
 def is_post(form):
     return form.get('method', '').lower() == 'post'
+#
+def remove_non_displayable(text):
+    printable_chars = set(string.printable)
+    return ''.join(filter(lambda x: x in printable_chars, text))
 #
 class WebpageParser(object):
     def __init__(self, _path:str) -> None:
@@ -27,7 +32,8 @@ class WebpageParser(object):
         return self._path
 
     def parse(self, _tag):
-        cols = ["title_raw", 
+        cols = ["title_raw",
+                "is_english",
                 "has_form", 
                 "has_login_form", 
                 "has_js", 
@@ -50,12 +56,19 @@ class WebpageParser(object):
                         soup = BeautifulSoup(html, 'html.parser')
                         # get the title of the webpage
                         if soup.title is not None and soup.title.string is not None:
-                            wp_title = soup.title.string.strip().lower()
+                            wp_title = remove_non_displayable(soup.title.string.strip().lower())
                             features["title_raw"] = " ".join(nltk.word_tokenize(wp_title))
                         else:
                             features["title_raw"] = ""
                         # Extract the text content from the HTML
-                        text = soup.get_text()
+                        text = remove_non_displayable(soup.get_text())
+
+                        try:
+                            features["is_english"] = (detect(text) == "en")
+                        except:
+                            # If we cannot detect the language, it's probably not useful or
+                            # english, so we'll labelled it as non-english
+                            features["is_english"] = False
 
                         # search for a login form
                         forms = soup.find_all('form', {'method': 'POST'})
