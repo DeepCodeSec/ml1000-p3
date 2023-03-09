@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Project #2</title>
+    <title>Project #3</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <style>
@@ -124,61 +124,12 @@
       <!-- Form to enter new data for classification  -->
       <form id="form_45045" method="post" action="/process">
         <div class="banner">
-          <h1>Project #2</h1>
+          <h1>Phishing Website Detector</h1>
         </div>
         <p class="top-info">Please enter all required fields.</p>
-        <!-- Alcohol,Malic_Acid,Ash,Ash_Alcanity,Magnesium,Total_Phenols,Flavanoids,Nonflavanoid_Phenols,Proanthocyanins,Color_Intensity,Hue,OD280,Proline -->
         <div class="item">
-          <p>Alcohol<span class="required">*</span></p>
-          <input type="number" step="any" min="0" max="100" name="Alcohol" placeholder="Alcohol (%)" maxlength=4 pattern="\d*" required />
-        </div>
-        <div class="item">
-          <p>Malic Acid<span class="required">*</span></p>
-          <input type="number" step="any" min="0" max="100" name="Malic_Acid" placeholder="Malic Acid" maxlength=4 pattern="\d*" required />
-        </div>
-        <div class="item">
-          <p>Ash<span class="required">*</span></p>
-          <input type="number" step="any" min="0" max="100" name="Ash" placeholder="Ash" maxlength=4 pattern="\d*" required />
-        </div>
-        <div class="item">
-          <p>Ash Alcany<span class="required">*</span></p>
-          <input type="number" step="any" min="0" max="100" name="Ash_Alcanity" placeholder="Ash Alcany" maxlength=4 pattern="\d*" required />
-        </div>
-        <div class="item">
-          <p>Magnesium<span class="required">*</span></p>
-          <input type="number" step="any" min="0" max="100" name="Magnesium" placeholder="Magnesium" maxlength=4 pattern="\d*" required />
-        </div>
-        <div class="item">
-          <p>Total_Phenols<span class="required">*</span></p>
-          <input type="number" step="any" min="0" max="100" name="Total_Phenols" placeholder="Total_Phenols" maxlength=4 pattern="\d*" required />
-        </div>
-        <div class="item">
-          <p>Flavanoids<span class="required">*</span></p>
-          <input type="number" step="any" min="0" max="100" name="Flavanoids" placeholder="Flavanoids" maxlength=4 pattern="\d*" required />
-        </div>
-        <div class="item">
-          <p>Nonflavanoid_Phenols<span class="required">*</span></p>
-          <input type="number" step="any" min="0" max="100" name="Nonflavanoid_Phenols" placeholder="Nonflavanoid_Phenols" maxlength=4 pattern="\d*" required />
-        </div>
-        <div class="item">
-          <p>Proanthocyanins<span class="required">*</span></p>
-          <input type="number" step="any" min="0" max="100" name="Proanthocyanins" placeholder="Proanthocyanins" maxlength=4 pattern="\d*" required />
-        </div>
-        <div class="item">
-          <p>Color_Intensity<span class="required">*</span></p>
-          <input type="number" step="any" min="0" max="100" name="Color_Intensity" placeholder="Color_Intensity" maxlength=4 pattern="\d*" required />
-        </div>
-        <div class="item">
-          <p>Hue<span class="required">*</span></p>
-          <input type="number" step="any" min="0" max="100" name="Hue" placeholder="Hue" maxlength=4 pattern="\d*" required />
-        </div>
-        <div class="item">
-          <p>OD280<span class="required">*</span></p>
-          <input type="number" step="any" min="0" max="100" name="OD280" placeholder="OD280" maxlength=4 pattern="\d*" required />
-        </div>
-        <div class="item">
-          <p>Proline<span class="required">*</span></p>
-          <input type="number" step="any" min="0" max="100" name="Proline" placeholder="Proline" maxlength=4 pattern="\d*" required />
+          <p>URL<span class="required">*</span></p>
+          <input type="input" name="url" placeholder="https://www.example.com" maxlength=128 required />
         </div>
         <div id="spinner-div" class="pt-5">
           <div class="spinner-border text-primary" role="status"></div>
