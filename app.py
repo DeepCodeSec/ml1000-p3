@@ -7,6 +7,7 @@ import sys
 import glob
 import pickle
 import argparse
+import requests
 import logging
 from datetime import datetime
 #
@@ -32,14 +33,22 @@ def get_newest_file(path):
 # Check if were are currently running on Heroku
 if 'DYNO' in os.environ:
     # if so load the model on execution
-    model_file = get_newest_file(os.path.join(os.getcwd(), "models"))
-    logger.debug(f"Latest model: {model_file}")
-    if model_file is not None:
-        current_model = load_model(model_file.split('.', maxsplit=1)[0])
+    text_model_file = get_newest_file(os.path.join(os.getcwd(), "models", "text"))
+    class_model_file = get_newest_file(os.path.join(os.getcwd(), "models", "class"))
+    logger.debug(f"Latest model (Text Processing): {text_model_file}")
+    logger.debug(f"Latest model (Classification): {class_model_file}")
+    if text_model_file is not None:
+        current_text_model = load_model(text_model_file.split('.', maxsplit=1)[0])
     else:
-        raise Exception(f"No model found.")
+        raise Exception(f"No text processing model found.")
+    
+    if class_model_file is not None:
+        current_class_model = load_model(class_model_file.split('.', maxsplit=1)[0])
+    else:
+        raise Exception(f"No text processing model found.")
 else: # Otherwise let the user decide how to load the model.
-    current_model = None
+    current_text_model = None
+    current_class_model = None
 
 @app.route('/')
 def home():
@@ -49,27 +58,51 @@ def home():
 @app.route('/process', methods=['POST'])
 def process():
     """ Endpoint processing the data to predict the quality. """
+    success = False
+    label = "N/A"
     # Extract the data from the form
     logger.debug(request.form)
-    d = {}
-    for param in request.form.keys():
-        param_value = request.form[param]
-        logger.debug(f"{param:<20}:{param_value}")
+    url = request.form["url"]
+    if url is not None and len(url) > 0:
+        # Try to request the URL requests
+        response = requests.get(url, headers={})
+        # If we were able to retrieve the contents of the URL, proceed
+        if response.status_code == 200:
+            # get the html of the page
+            html = response.text
+            # parse the HTML and extract the features
+            parser = WebpageParser()
+            try:
+                d = parser.parse_html(html)
 
-    global current_model
-    if current_model is not None:
-        # Create a sample dataset for prediction
-        data = pd.DataFrame(d)
-        predictions = predict_model(current_model, data=data)
-        logger.info(predictions)
+                if d["is_english"]:
+                    del d["is_english"]
+                    del d["title_raw"]
+                    # Load the features in the model.
+                    global current_text_model
+                    global current_class_model
+                    if current_text_model is not None:
+                        # Create a sample dataset for prediction
+                        data = pd.DataFrame(d)
+                        predictions = predict_model(current_text_model, data=data)
+                        logger.info(predictions)
 
-        #logger.info(f"Predicted quality: {label} ({score}).")
-    else:
-        logger.error(f"No model defined.")
+                        #logger.info(f"Predicted quality: {label} ({score}).")
+                        success = True
+                    else:
+                        logger.error(f"No model defined.")
+                else:
+                    label = "The language of the webpage provided is not supported."
+            except Exception as e:
+                label = f"Error processing '{url}': {str(e)}"
+                logger.error(label)
+
+    if not success:
+        logger.error(label)
 
     return jsonify({
-        "ok": False,
-        "label": ""
+        "ok": success,
+        "label": label
     })
 
 def main(argv):
@@ -136,13 +169,17 @@ def main(argv):
     # Otherwise, start the server
     else:
         # Load the latest model
-        model_file = get_newest_file(os.path.join(os.getcwd(), "models"))
-        if model_file is not None:
-            logger.info(f"Selected '{model_file}' as model.")
+        text_model_file = get_newest_file(os.path.join(os.getcwd(), "models", "text"))
+        class_model_file = get_newest_file(os.path.join(os.getcwd(), "models", "class"))
+        if text_model_file is not None and class_model_file is not None:
+            logger.info(f"Selected '{text_model_file}' as text processing model.")
+            logger.info(f"Selected '{class_model_file}' as classification model.")
             # For some reason, `load_model` appends `.pkl` to the file, so 
             # we need to remove it.
-            global current_model
-            current_model = load_model(model_file.split('.', maxsplit=1)[0])
+            global current_text_model
+            global current_class_model
+            current_text_model = load_model(text_model_file.split('.', maxsplit=1)[0])
+            current_class_model = load_model(class_model_file.split('.', maxsplit=1)[0])
             # Start the server
         else:
             logger.warning(f"No model available.")
