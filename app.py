@@ -11,7 +11,8 @@ import requests
 import logging
 from datetime import datetime
 #
-from pycaret.classification import load_model, predict_model
+from pycaret.classification import *
+from pycaret.nlp import assign_model
 import pandas as pd
 from flask import Flask, request, render_template, jsonify
 #
@@ -64,38 +65,40 @@ def process():
     logger.debug(request.form)
     url = request.form["url"]
     if url is not None and len(url) > 0:
-        # Try to request the URL requests
-        response = requests.get(url, headers={})
-        # If we were able to retrieve the contents of the URL, proceed
-        if response.status_code == 200:
-            # get the html of the page
-            html = response.text
-            # parse the HTML and extract the features
-            parser = WebpageParser()
-            try:
-                d = parser.parse_html(html)
-
-                if d["is_english"]:
-                    del d["is_english"]
-                    del d["title_raw"]
-                    # Load the features in the model.
-                    global current_text_model
-                    global current_class_model
-                    if current_text_model is not None:
-                        # Create a sample dataset for prediction
-                        data = pd.DataFrame(d)
-                        predictions = predict_model(current_text_model, data=data)
-                        logger.info(predictions)
-
-                        #logger.info(f"Predicted quality: {label} ({score}).")
-                        success = True
+        try:
+            # Try to request the URL requests
+            response = requests.get(url, headers={}, verify=False)
+            # If we were able to retrieve the contents of the URL, proceed
+            if response.status_code == 200:
+                # get the html of the page
+                html = response.text
+                # parse the HTML and extract the features
+                parser = WebpageParser()
+                try:
+                    f = parser.parse_html(html)
+                    d = pd.DataFrame([f])
+                    if d["is_english"] == True:
+                        # Load the features in the model.
+                        global current_text_model
+                        global current_class_model
+                        if current_text_model is not None:
+                            exp_name = setup(data=d, target='text_clean')
+                            # Apply the LDA model to the unseen document to extract topics
+                            topics = assign_model(current_text_model)
+                            topics.drop(['title_raw', 'text_clean', 'Dominant_Topic', 'Perc_Dominant_Topic'], axis=1, inplace = True)
+                            prediction = predict_model(current_class_model, data=topics)
+                            label = prediction.iloc[-1]["Label"]
+                            success = True
+                        else:
+                            logger.error(f"No model defined.")
                     else:
-                        logger.error(f"No model defined.")
-                else:
-                    label = "The language of the webpage provided is not supported."
-            except Exception as e:
-                label = f"Error processing '{url}': {str(e)}"
-                logger.error(label)
+                        label = "The language of the webpage provided is not supported."
+                except Exception as e:
+                    label = f"Error processing '{url}': {str(e)}"
+                    logger.error(label)
+        except Exception as e:
+            label = f"Unable to reach '{url}': {str(e)}"
+            logger.error(label)
 
     if not success:
         logger.error(label)
@@ -151,21 +154,23 @@ def main(argv):
     # Train a new model
     elif args.do_train:
         # Load the data
-        datafile = os.path.abspath('./data/data.csv')
+        datafile = os.path.abspath('./data/sample/data.csv')
         dataset = MaliciousWebpageDataset(datafile)
         logger.info(f"{dataset.nb_rows} row(s) loaded from '{datafile}'.")
-        # Generate the model
-        logger.info("Selecting best classifier model...")
-        model = dataset.best_model
-        # Print information about the best model
-        print(model)
+
         # Generate a file name based on the current date and time
         now = datetime.now().strftime("%Y%m%d-%H%M%S")
-        file_name = f"{now}"
-        file_path = os.path.abspath(os.path.join(".", "models", file_name))
-        # Save the best model to a file
-        dataset.save_best_model_to(file_path)
-        logger.info(f"Save model to '{file_path}.")
+
+        topics_file_name = f"text-{now}"
+        file_path = os.path.abspath(os.path.join(".", "models", "text", topics_file_name))
+        dataset.save_topics_model_to(file_path)
+        logger.info(f"Save topics model to '{file_path}.")
+
+        class_file_name = f"class-{now}"
+        file_path = os.path.abspath(os.path.join(".", "models", "class", class_file_name))
+        dataset.save_classifier_model_to(file_path)
+        logger.info(f"Save classifier model to '{file_path}.")
+
     # Otherwise, start the server
     else:
         # Load the latest model
