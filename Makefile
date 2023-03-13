@@ -10,6 +10,12 @@ install:
 
 data: clean ./data/data.csv
 
+sample:
+	head -20000 ./data/full/data.csv > ./data/sample/data.csv
+	tail -20000 ./data/full/data.csv >> ./data/sample/data.csv
+	grep "benign" ./data/sample/data.csv | wc -l
+	grep "malicious" ./data/sample/data.csv | wc -l
+
 clean:
 	-rm ./data/data-benign.csv
 	-rm ./data/data-malicious.csv
