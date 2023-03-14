@@ -140,8 +140,8 @@ class MaliciousWebpageDataset(object):
         vector_file_name = f"vector-{now}.pkl"
         class_file_name = f"class-{now}"
 
-        vector_file_path = os.path.abspath(os.path.join(".", vector_file_name))
-        class_file_path = os.path.abspath(os.path.join(".", class_file_name))
+        vector_file_path = os.path.abspath(os.path.join(".", "vector", vector_file_name))
+        class_file_path = os.path.abspath(os.path.join(".", "class", class_file_name))
 
         # Save the fitted vectorizer as a pickle file
         with open(vector_file_name, 'wb') as f:
