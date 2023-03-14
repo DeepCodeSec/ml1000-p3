@@ -44,7 +44,6 @@
       .banner {
         position: relative;
         height: 180px;
-        background-image: url("{{url_for('static', filename='img/wines.jpg')}}");  
         background-size: cover;
         display: flex;
         justify-content: center;
@@ -126,7 +125,7 @@
         <div class="banner">
           <h1>Phishing Website Detector</h1>
         </div>
-        <p class="top-info">Please enter all required fields.</p>
+        <p class="top-info">Provide a URL. Use <a href="https://phishtank.org/phish_detail">PhishTank</a> to test a phishing site.</p>
         <div class="item">
           <p>URL<span class="required">*</span></p>
           <input type="input" name="url" placeholder="https://www.example.com" maxlength=128 required />
@@ -163,7 +162,7 @@
         $("#do-call").click(function () {//The load button
           $("#spinner-div").show(); //Load button clicked show spinner
           var formData = $('#form_45045').serialize();
-
+          $("#message_string").text("")
           console.log(formData)
 
           $.ajax({
@@ -173,7 +172,11 @@
           // dataType: "json",
             success: function (res) {
               console.log(res);
-              $("#message_string").text(res.label); //Write the message
+              if (res.ok) {
+                $("#message_string").text(res.label); //Write the message
+              } else {
+                $("#message_string").text("Unable to assess the provided URL. Website cannot be reached."); //Write the message
+              }
             },
             complete: function () {
               $("#spinner-div").hide(); //Request is complete so hide spinner

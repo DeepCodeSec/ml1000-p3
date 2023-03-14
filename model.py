@@ -1,13 +1,17 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
+import os
+import pickle
 import logging
 import numpy as np
 import pandas as pd
+from datetime import datetime
 
-import pycaret.nlp
-import pycaret.classification
-from pycaret.nlp import *
+from nltk.stem import WordNetLemmatizer
+from nltk.corpus import stopwords
+from pycaret.classification import *
+from sklearn.feature_extraction.text import CountVectorizer
 #
 logger = logging.getLogger(__name__)
 #
@@ -16,68 +20,94 @@ class MaliciousWebpageDataset(object):
 
     def __init__(self, _file:str, _target_col_topics:str="text_clean", _target_col_class:str="classification", _training_size=0.85, _drop_cols=[]) -> None:
         self._datafile = _file
-        self._df = pd.read_csv(_file, sep=',')
+        df_features = pd.read_csv(_file, sep=',')
 
-        english_only = True
-        min_tokens = 10
-        nb_topics = 14
-        df = self._df
+        # Options
+        min_tokens = 10 #@param { type:"integer" }
+        max_tokens = 50 #@param { type:"integer" }
+        max_words = 250 #@param { type:"integer" }
+        english_only = True #@param { type:"boolean" }
+
         # remove rows containing foreign languages
-        if english_only and 'is_english' in df:
-            df = df[df['is_english'] == True]
+        if english_only and 'is_english' in df_features:
+            df_features = df_features[df_features['is_english'] == True]
+        # Drop unneeded columns
+        df_features.drop('is_english', axis=1, inplace=True)
+        df_features.drop('title_raw', axis=1, inplace=True)
         # Keep rows with at least 3 tokens in the `text_clean` column
-        df = df[df['nb_tokens'] >= min_tokens ]
+        df_features = df_features[df_features['nb_tokens'] >= min_tokens ]
         # Remove misclassified rows
-        df = df[(df['classification'] == 'benign') | (df['classification'] == 'malicious')]
+        df_features = df_features[(df_features['classification'] == 'benign') | (df_features['classification'] == 'malicious')]
         # Remove strings containing special characters or
         # misparsed HTML tags and code.
-        df['text_clean'] = df['text_clean'].str.replace('_',' ',regex=True)
-        df['text_clean'] = df['text_clean'].str.replace('//',' ',regex=True)
-        df['text_clean'] = df['text_clean'].str.replace('javascript','',regex=True)
-        df['text_clean'] = df['text_clean'].str.replace('https','',regex=True)
-        df['text_clean'] = df['text_clean'].str.replace('http','',regex=True)
+        df_features['text_clean'] = df_features['text_clean'].str.replace('_',' ',regex=True)
+        df_features['text_clean'] = df_features['text_clean'].str.replace('//',' ',regex=True)
+        df_features['text_clean'] = df_features['text_clean'].str.replace('javascript','',regex=True)
+        df_features['text_clean'] = df_features['text_clean'].str.replace('https','',regex=True)
+        df_features['text_clean'] = df_features['text_clean'].str.replace('http','',regex=True)
 
-        print(f"The dataset contains {df.shape[0]} rows and {df.shape[1]} columns.")
+        print(f"The dataset contains {df_features.shape[0]} rows and {df_features.shape[1]} columns.")
+        # Load the default list of English stop words
+        default_stop_words = stopwords.words('english')
+
         # Create the classifier
         # Pass the complete dataset as data and the featured to be predicted as target
         # Add custom stop words here:
-        stop_words = ["com", "ca", "go", "td", "tr"
+        custom_stop_words = ["com", "ca", "go", "td", "tr"
                     "px", "co", "uv", "ru",
                     "mx", "also", "use", 
                     "wo", "may", "oo", "javascript", "www",
                     "html", "id", "class", "http", "https"]
 
-        # Generate the classifier for the text contents of the web pages
-        self._clf = pycaret.nlp.setup(data=df, 
-                    target=_target_col_topics, 
-                    custom_stopwords=stop_words)
+        # Append the custom list to the default list of stop words
+        stop_words = default_stop_words + custom_stop_words
 
-        # Create the model
-        m_lda = pycaret.nlp.create_model(model='lda', num_topics=nb_topics, multi_core=True)
-        d_lda = assign_model(m_lda)
-        d_lda.dropna(inplace=True)
-        d_lda.drop(['title_raw', 'text_clean', 'Dominant_Topic', 'Perc_Dominant_Topic'], axis=1, inplace=True)
+        # Define a custom token pattern that matches only alphabetic characters
+        pattern = r'\b[A-Za-z]+\b'
 
-        import matplotlib.pyplot as plt
+        # Create a CountVectorizer
+        # We keep only bigrams and trigrams
+        # We remove words not withing the [.015, 0.8] frequency
+        self._count_vectorizer = CountVectorizer(min_df=.015, 
+                                        max_df=0.8, 
+                                        stop_words=stop_words, 
+                                        max_features=max_words, 
+                                        ngram_range=[2, 3],
+                                        token_pattern=pattern)
 
-        # assume "df" is your DataFrame object
-        classification_counts = d_lda['classification'].value_counts()
-        print(classification_counts)
-        # plot the histogram
-        classification_counts.plot(kind='bar')
+        # Fit the vectorizer to the text data and transform the data
+        X = self._count_vectorizer.fit_transform(df_features['text_clean'])
 
-        self._ccls = pycaret.classification.setup(
-            data=d_lda,
-            transformation=True, 
-            normalize=True,
-            fix_imbalance=True,
-            remove_perfect_collinearity=True,
-            target=_target_col_class,
-            train_size=_training_size) 
+        # Create a DataFrame from the `csr_matrix` generated
+        df_words = pd.DataFrame(data=X.toarray(),
+                                columns=self._count_vectorizer.get_feature_names())
 
-        cl_model = pycaret.classification.create_model('gbc')
-        self._best_topics_model = m_lda
-        self._best_classifier_model = pycaret.classification.finalize_model(pycaret.classification.tune_model(cl_model))
+        # Reset the index of the two DataFrames
+        df_features.reset_index(drop=True, inplace=True)
+        df_words.reset_index(drop=True, inplace=True)
+        # Concatenate the 2 `DataFrame` to generate the dataset
+        df = pd.concat([df_features, df_words], axis=1)
+
+        #@title Classifier Options
+        sid = 1337 #@param {type:"integer"}
+        training_size = 0.85 #@param { type:"number" }
+
+        # Create a PyCaret Classification experiment
+        clf = setup(data=df,
+                    session_id=sid,
+                    transformation=True, 
+                    normalize=True,
+                    fix_imbalance=True,
+                    remove_perfect_collinearity=True,
+                    train_size=training_size,
+                    target="classification")
+
+        # Compare multiple models and select the best
+        best_model = compare_models()
+
+        # Finalize the best model
+        final_model = finalize_model(tune_model(best_model))
+        self._best_model = final_model
 
     @property
     def filename(self) -> str:
@@ -100,17 +130,25 @@ class MaliciousWebpageDataset(object):
         return self.dataframe.shape[1]
 
     @property
-    def best_topics_model(self):
-        return self._best_topics_model
+    def best_model(self):
+        return self._best_model
 
-    @property
-    def best_classifier_model(self):
-        return self._best_classifier_model
+    def save_model(self) -> tuple:
+        # Generate a file name based on the current date and time
+        now = datetime.now().strftime("%Y%m%d-%H%M%S")
 
-    def save_topics_model_to(self, _filename:str) -> None:
+        vector_file_name = f"vector-{now}.pkl"
+        class_file_name = f"class-{now}"
+
+        vector_file_path = os.path.abspath(os.path.join(".", "vector", vector_file_name))
+        class_file_path = os.path.abspath(os.path.join(".", "class", class_file_name))
+
+        # Save the fitted vectorizer as a pickle file
+        with open(vector_file_name, 'wb') as f:
+            pickle.dump(self._count_vectorizer, f)
+
         # Save the best model to a file
-        save_model(self._best_topics_model, _filename)
+        save_model(self._best_model, class_file_path)
+        return (vector_file_path, class_file_path)
 
-    def save_classifier_model_to(self, _filename:str) -> None:
-        # Save the best model to a file
-        save_model(self._best_classifier_model, _filename)
+
