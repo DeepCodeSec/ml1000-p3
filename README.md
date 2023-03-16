@@ -1,5 +1,6 @@
-# ml1000-p2
-Project 2 for the ML1000 course
+# ML1000 - Project #3 - Phishing Website Detector
+
+Project #3 for the ML1000 course implements a phishing detection model for websites using a `CountVectorizer` to extract key n-grams from text data of webpages, combined with some extra features from the HTML code.
 
 ## Installation
 
@@ -83,9 +84,6 @@ To run the server locally, simply use the following command:
 ```sh
 $ (venv) python3 app.py
 ```
-
-
-## Usage
 
 ## Application
 
