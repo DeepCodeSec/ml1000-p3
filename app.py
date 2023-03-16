@@ -11,9 +11,17 @@ import requests
 import logging
 from datetime import datetime
 #
-from pycaret.classification import load_model, predict_model
+# ML-related modules
+#
 import pandas as pd
+from pycaret.classification import *
+from sklearn.feature_extraction.text import CountVectorizer
+#
+# App-related modules
+#
 from flask import Flask, request, render_template, jsonify
+#
+# Internal modules
 #
 from model import MaliciousWebpageDataset
 from webparse import WebpageParser
@@ -33,22 +41,24 @@ def get_newest_file(path):
 # Check if were are currently running on Heroku
 if 'DYNO' in os.environ:
     # if so load the model on execution
-    text_model_file = get_newest_file(os.path.join(os.getcwd(), "models", "text"))
+    vector_model_file = get_newest_file(os.path.join(os.getcwd(), "models", "vector"))
     class_model_file = get_newest_file(os.path.join(os.getcwd(), "models", "class"))
-    logger.debug(f"Latest model (Text Processing): {text_model_file}")
+    logger.debug(f"Latest model (Vector): {vector_model_file}")
     logger.debug(f"Latest model (Classification): {class_model_file}")
-    if text_model_file is not None:
-        current_text_model = load_model(text_model_file.split('.', maxsplit=1)[0])
+    if vector_model_file is not None:
+        with open(f"{vector_model_file}", 'rb') as f:
+            current_vector_model = pickle.load(f)
     else:
-        raise Exception(f"No text processing model found.")
+        raise Exception(f"No vector model found.")
     
     if class_model_file is not None:
         current_class_model = load_model(class_model_file.split('.', maxsplit=1)[0])
     else:
-        raise Exception(f"No text processing model found.")
+        raise Exception(f"No classification model found.")
 else: # Otherwise let the user decide how to load the model.
-    current_text_model = None
+    current_vector_model = None
     current_class_model = None
+    
 
 @app.route('/')
 def home():
@@ -58,44 +68,59 @@ def home():
 @app.route('/process', methods=['POST'])
 def process():
     """ Endpoint processing the data to predict the quality. """
+    # Specifies whether the operation succeed
     success = False
+    # Error message of label of the website
     label = "N/A"
-    # Extract the data from the form
-    logger.debug(request.form)
+    # Get the URL requested
     url = request.form["url"]
+    # Define a semi-legitimate user agent string
+    ua = "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-US) AppleWebKit/534.16 (KHTML, like Gecko) Chrome/10.0.648.204"
+    # Ensure the URL is valid
+    # TODO: use validators module
     if url is not None and len(url) > 0:
-        # Try to request the URL requests
-        response = requests.get(url, headers={})
-        # If we were able to retrieve the contents of the URL, proceed
-        if response.status_code == 200:
-            # get the html of the page
-            html = response.text
-            # parse the HTML and extract the features
-            parser = WebpageParser()
-            try:
-                d = parser.parse_html(html)
+        try:
+            # Try to request the URL requests
+            response = requests.get(url, headers={"User-Agent": ua}, verify=False, timeout=10)
+            # Check if we got contents
+            if response.status_code == 200:
+                html = response.text
+                logger.info(f"[+] Received {len(html)} byte(s) from '{url}'.")
 
-                if d["is_english"]:
-                    del d["is_english"]
-                    del d["title_raw"]
-                    # Load the features in the model.
-                    global current_text_model
+                wp = WebpageParser()
+                f = wp.parse_html(html)
+
+                if f["is_english"] is True:
+                    global current_vector_model
                     global current_class_model
-                    if current_text_model is not None:
-                        # Create a sample dataset for prediction
-                        data = pd.DataFrame(d)
-                        predictions = predict_model(current_text_model, data=data)
-                        logger.info(predictions)
 
-                        #logger.info(f"Predicted quality: {label} ({score}).")
-                        success = True
-                    else:
-                        logger.error(f"No model defined.")
+                    # Generate a `DataFrame` from the features extracted
+                    df_features = pd.DataFrame([f])
+
+                    # Drop unneeded columns
+                    df_features.drop('is_english', axis=1, inplace=True)
+                    df_features.drop('title_raw', axis=1, inplace=True)
+
+                    # Vectorize the website content using the pre-trained count vectorizer
+                    X = current_vector_model.transform(df_features["text_clean"])
+
+                    df_words = pd.DataFrame(data=X.toarray(), columns = current_vector_model.get_feature_names())
+
+                    # Merge dataframes together
+                    df = pd.concat([df_features, df_words], axis=1)
+
+                    prediction = predict_model(current_class_model, data=df)
+                    label = prediction.iloc[-1]["Label"]
+                    success = True
+                    
+                    logger.info(f"[+] Classification: {label.upper()}")
                 else:
-                    label = "The language of the webpage provided is not supported."
-            except Exception as e:
-                label = f"Error processing '{url}': {str(e)}"
-                logger.error(label)
+                    logger.error(f"[-] Target website is not written in English.")
+            else:
+                logger.error(f"[-] Received response '{response.status_code}' from '{url}'.")
+        except Exception as e:
+            label = f"Unable to reach '{url}': {str(e)}"
+            logger.error(label)
 
     if not success:
         logger.error(label)
@@ -151,34 +176,28 @@ def main(argv):
     # Train a new model
     elif args.do_train:
         # Load the data
-        datafile = os.path.abspath('./data/data.csv')
+        datafile = os.path.abspath('./data/sample/data.csv')
         dataset = MaliciousWebpageDataset(datafile)
-        logger.info(f"{dataset.nb_rows} row(s) loaded from '{datafile}'.")
-        # Generate the model
-        logger.info("Selecting best classifier model...")
-        model = dataset.best_model
-        # Print information about the best model
-        print(model)
-        # Generate a file name based on the current date and time
-        now = datetime.now().strftime("%Y%m%d-%H%M%S")
-        file_name = f"{now}"
-        file_path = os.path.abspath(os.path.join(".", "models", file_name))
-        # Save the best model to a file
-        dataset.save_best_model_to(file_path)
-        logger.info(f"Save model to '{file_path}.")
+        #logger.info(f"{dataset.nb_rows} row(s) loaded from '{datafile}'.")
+        (vf, md) = dataset.save_model()
+        logger.info(f"Saved vector model to '{vf}.")
+        logger.info(f"Saved classification model to '{md}.")
     # Otherwise, start the server
     else:
         # Load the latest model
-        text_model_file = get_newest_file(os.path.join(os.getcwd(), "models", "text"))
+        vector_model_file = get_newest_file(os.path.join(os.getcwd(), "models", "vector"))
         class_model_file = get_newest_file(os.path.join(os.getcwd(), "models", "class"))
-        if text_model_file is not None and class_model_file is not None:
-            logger.info(f"Selected '{text_model_file}' as text processing model.")
+        if vector_model_file is not None and class_model_file is not None:
+            logger.info(f"Selected '{vector_model_file}' as vector model.")
             logger.info(f"Selected '{class_model_file}' as classification model.")
             # For some reason, `load_model` appends `.pkl` to the file, so 
             # we need to remove it.
-            global current_text_model
+            global current_vector_model
             global current_class_model
-            current_text_model = load_model(text_model_file.split('.', maxsplit=1)[0])
+
+            with open(f"{vector_model_file}", 'rb') as f:
+                current_vector_model = pickle.load(f)
+
             current_class_model = load_model(class_model_file.split('.', maxsplit=1)[0])
             # Start the server
         else:
