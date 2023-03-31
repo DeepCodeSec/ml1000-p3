@@ -1,6 +1,6 @@
-# ML1000 - Project #3 - Phishing Website Detector
+# ML1010 - Project - Phishing Website Detector
 
-Project #3 for the ML1000 course implements a phishing detection model for websites using a `CountVectorizer` to extract key n-grams from text data of webpages, combined with some extra features from the HTML code.
+Project for the ML1010 course implements a phishing detection model for websites.
 
 ## Installation
 
