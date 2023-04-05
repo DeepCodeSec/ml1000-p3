@@ -1,0 +1,160 @@
+{
+    "banks": [
+        {
+            "name": "JPMorgan Chase",
+            "country": "United States"
+        },
+        {
+            "name": "Bank of America",
+            "country": "United States"
+        },
+        {
+            "name": "Wells Fargo",
+            "country": "United States"
+        },
+        {
+            "name": "HSBC",
+            "country": "United Kingdom"
+        },
+        {
+            "name": "Deutsche Bank",
+            "country": "Germany"
+        },
+        {
+            "name": "Mitsubishi UFJ",
+            "country": "Japan"
+        },
+        {
+            "name": "Citibank",
+            "country": "United States"
+        },
+        {
+            "name": "RBC",
+            "country": "Canada"
+        },
+        {
+            "name": "PayPal",
+            "country": "United States"
+        },
+        {
+            "name": "ScotiaBank",
+            "country": "Canada"
+        }
+    ],
+    "tech_companies": [
+        {
+            "name": "Apple",
+            "country": "United States"
+        },
+        {
+            "name": "Microsoft",
+            "country": "United States"
+        },
+        {
+            "name": "Amazon",
+            "country": "United States"
+        },
+        {
+            "name": "Google",
+            "country": "United States"
+        },
+        {
+            "name": "Samsung",
+            "country": "South Korea"
+        },
+        {
+            "name": "Facebook",
+            "country": "United States"
+        }
+    ],
+    "media": [
+        {
+            "name": "Steam",
+            "country": "United States"
+        },
+        {
+            "name": "Netflix",
+            "country": "United States"
+        }
+    ],
+    "parcel_delivery_companies": [
+        {
+            "name": "UPS",
+            "country": "United States"
+        },
+        {
+            "name": "FedEx",
+            "country": "United States"
+        },
+        {
+            "name": "DHL",
+            "country": "Germany"
+        },
+        {
+            "name": "TNT",
+            "country": "Netherlands"
+        },
+        {
+            "name": "USPS",
+            "country": "United States"
+        },
+        {
+            "name": "Royal Mail",
+            "country": "United Kingdom"
+        },
+        {
+            "name": "Purolator",
+            "country": "Canada"
+        },
+        {
+            "name": "Canada Post",
+            "country": "Canada"
+        }
+    ],
+    "social_media_networks": [
+        {
+            "name": "Facebook",
+            "country": "United States"
+        },
+        {
+            "name": "YouTube",
+            "country": "United States"
+        },
+        {
+            "name": "WhatsApp",
+            "country": "United States"
+        },
+        {
+            "name": "Facebook Messenger",
+            "country": "United States"
+        },
+        {
+            "name": "WeChat",
+            "country": "China"
+        },
+        {
+            "name": "Instagram",
+            "country": "United States"
+        },
+        {
+            "name": "TikTok",
+            "country": "China"
+        },
+        {
+            "name": "QQ",
+            "country": "China"
+        },
+        {
+            "name": "Weibo",
+            "country": "China"
+        },
+        {
+            "name": "LinkedIn",
+            "country": "United States"
+        },
+        {
+            "name": "Twitter",
+            "country": "United States"
+        }
+    ]
+}
